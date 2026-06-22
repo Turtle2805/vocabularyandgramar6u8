@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Tập Tiếng Anh Siêu Cấp - Ms Lê Hằng English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --bg-teal: #00B4A2;
+            --dark-teal: #00796B;
+            --emerald: #00A699;
+            --correct: #00D26A;
+            --wrong: #FF4757;
+            --accent-yellow: #FDCB6E;
+            --accent-orange: #FF8F00;
+            --eng-blue: #1976D2;
+            --vn-red: #D84315;
+            --primary: #8854C0;
+            --ipa-purple: #7B1FA2;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Nunito', sans-serif;
+            background: linear-gradient(-45deg, #8854C0, #FDCB6E, #00C9A7, #00B4A2);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            min-height: 100vh;
+            color: #2D3748;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Animated SVG floating patterns */
+        .decor-pattern {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.15;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 100 100'%3E%3Cg fill='%23ffffff' fill-opacity='0.8'%3E%3Cpath d='M12 24 C 15 20, 18 20, 20 24 C 22 28, 15 35, 12 24 Z'/%3E%3Ccircle cx='75' cy='35' r='6'/%3E%3Cpath d='M40 70 L48 70 L44 78 Z'/%3E%3Cpath d='M80 80 Q 85 70, 90 80 T 100 80' fill='none' stroke='%23ffffff' stroke-width='3'/%3E%3C/g%3E%3C/svg%3E");
+            animation: backgroundFloat 40s linear infinite;
+        }
+
+        @keyframes backgroundFloat {
+            0% { background-position: 0 0; }
+            100% { background-position: 800px 1600px; }
+        }
+
+        /* Interactive 3D Buttons */
+        .btn-3d {
+            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 0px rgba(0,0,0,0.15);
+        }
+        .btn-3d:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0px rgba(0,0,0,0.15);
+        }
+
+        .btn-answer {
+            background-color: #E0F2F1;
+            color: #1A365D;
+            transition: all 0.12s ease;
+            box-shadow: 0 6px 0px #B2DFDB;
+        }
+        .btn-answer:hover:not(.disabled) {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 9px 0px #B2DFDB;
+            background-color: #F4FBFB;
+        }
+        .btn-answer:active:not(.disabled) {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0px #B2DFDB;
+        }
+        .btn-answer.correct {
+            background-color: var(--correct) !important;
+            color: white !important;
+            box-shadow: 0 6px 0px #009624 !important;
+        }
+        .btn-answer.wrong {
+            background-color: var(--wrong) !important;
+            color: white !important;
+            box-shadow: 0 6px 0px #C2185B !important;
+        }
+
+        /* Glassmorphism Containers */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 2px solid rgba(255, 255, 255, 0.45);
+            border-radius: 32px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #FFFDE7, #FFF9C4);
+            border: 3.5px solid #FBC02D;
+            border-radius: 24px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+        }
+
+        .shake {
+            animation: shake 0.4s ease-in-out;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+
+        /* Explanation Box Styling */
+        .explanation-box {
+            background: #FFFFFF;
+            border-left: 10px solid var(--accent-orange);
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            overflow: hidden;
+            animation: slideDown 0.35s ease-out;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .banner-instruction {
+            background-color: #FFF9C4;
+            border: 2px dashed var(--accent-orange);
+            border-radius: 12px;
+            color: #E65100;
+        }
+
+        .exp-word {
+            color: var(--eng-blue);
+            font-weight: 800;
+        }
+        .exp-meaning {
+            color: var(--vn-red);
+            font-weight: 700;
+        }
+
+        #confetti-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Navigation Tab Buttons */
+        .tab-btn {
+            background-color: rgba(255, 255, 255, 0.4);
+            color: #1A3038;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover {
+            background-color: rgba(255, 255, 255, 0.75);
+        }
+        .tab-btn.active {
+            background-color: var(--dark-teal) !important;
+            color: white !important;
+            box-shadow: 0 5px 0 #004D40 !important;
+            transform: translateY(2px);
+        }
+    </style>
+</head>
+<body class="pb-28">
+
+    <div class="decor-pattern"></div>
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="container mx-auto px-4 max-w-4xl pt-6">
+        <header class="text-center mb-6">
+            <div class="inline-flex items-center gap-2 bg-emerald-800/40 text-white py-1 px-4 rounded-full text-xs font-black mb-2 shadow-sm border border-white/20">
+                <i class="fa-solid fa-graduation-cap text-yellow-300"></i> Giáo viên tạo: Ms Lê Hằng English
+            </div>
+            <h1 class="text-2xl md:text-4xl font-black text-white drop-shadow-[0_3px_0_rgba(0,0,0,0.15)] tracking-wide">
+                🌟 ĐẠI NỘI DUNG ÔN TẬP TIẾNG ANH SIÊU CẤP 🌟
+            </h1>
+        </header>
+
+        <div class="warning-box p-5 md:p-6 mb-8 text-center">
+            <h3 class="text-lg font-black text-amber-800 flex justify-center items-center gap-2 mb-2">
+                <i class="fa-solid fa-triangle-exclamation text-xl text-red-500 animate-bounce"></i> 
+                LỜI NHẮC CỰC KỲ QUAN TRỌNG
+                <i class="fa-solid fa-triangle-exclamation text-xl text-red-500 animate-bounce"></i>
+            </h3>
+            <p class="text-amber-900 font-bold text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+                Chỉ có <span class="text-red-500 underline decoration-2">đọc kỹ giải thích ngay sau mỗi câu</span>, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên.
+            </p>
+            <p class="text-amber-800 font-bold text-xs md:text-sm mt-2">
+                Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích!
+            </p>
+            <div class="mt-3 text-purple-700 font-black tracking-widest text-xs animate-pulse">
+                * Kéo tới đâu, làm tới đó! *
+            </div>
+        </div>
+
+        <!-- Dynamic Navigation Stepper/Tabs to handle 135 questions smoothly -->
+        <div class="mb-8">
+            <p class="text-white font-black text-center mb-3 drop-shadow text-xs tracking-wider uppercase">
+                <i class="fa-solid fa-book-open"></i> Lựa chọn phần ôn tập (Tránh quá tải):
+            </p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 bg-black/25 p-2 rounded-3xl backdrop-blur-md" id="tabs-container">
+                <!-- Programmatically generated tabs go here -->
+            </div>
+        </div>
+
+        <main class="glass-card p-6 md:p-8 relative min-h-[400px]">
+            <div id="exercise-workspace" class="transition-all duration-300">
+                <!-- Current Active Question List Renders here dynamically -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Sticky footer panel with overall status tracking -->
+    <footer class="fixed bottom-0 left-0 w-full bg-white/95 border-t-4 border-emerald-600 px-4 py-3 shadow-[0_-8px_30px_rgba(0,0,0,0.15)] flex items-center justify-between gap-4 z-40 backdrop-blur-sm">
+        <div class="flex items-center gap-3">
+            <div class="bg-yellow-100 text-amber-800 py-1.5 px-4 rounded-2xl flex items-center gap-2 font-black text-xs md:text-sm border border-yellow-300 shadow-sm">
+                <i class="fa-solid fa-star text-yellow-400 animate-spin-slow"></i>
+                <span>Điểm rèn luyện: <span id="footer-score-text" class="text-emerald-600 text-lg">0</span></span>
+            </div>
+            <div class="hidden sm:block w-40 md:w-64 bg-gray-200 h-4 rounded-full overflow-hidden shadow-inner border border-gray-300">
+                <div class="bg-gradient-to-r from-emerald-400 to-green-400 h-full w-0 transition-all duration-300 rounded-full" id="footer-progress-bar"></div>
+            </div>
+        </div>
+        <button onclick="submitFinal()" class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-black px-6 py-2.5 rounded-2xl shadow-[0_5px_0px_#059669] hover:brightness-110 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 text-xs md:text-sm">
+            <i class="fa-solid fa-flag-checkered"></i> GỬI KẾT QUẢ CHO CÔ HẰNG
+        </button>
+    </footer>
+
+    <!-- Modal Result popup -->
+    <div id="result-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div class="bg-white rounded-[32px] p-6 md:p-8 w-full max-w-lg border-4 border-emerald-400 shadow-2xl text-center">
+            <div class="text-5xl mb-3">🎓</div>
+            <h3 class="text-xl md:text-2xl font-black text-teal-700 mb-2">Ms Lê Hằng English Đánh Giá</h3>
+            <div class="bg-teal-50 p-4 rounded-2xl border-2 border-dashed border-teal-200 mb-4">
+                <p class="text-gray-500 font-bold text-sm">Điểm số đạt được:</p>
+                <p class="text-4xl font-extrabold text-emerald-500 animate-bounce" id="modal-score-percent">0%</p>
+                <p class="text-xs text-teal-600 mt-1 font-bold" id="modal-score-fraction">(0/0 câu đúng)</p>
+            </div>
+            <p class="text-gray-700 font-bold text-sm md:text-base mb-6 leading-relaxed text-left max-h-48 overflow-y-auto" id="modal-comment"></p>
+            <div class="flex gap-3">
+                <button onclick="restartTest()" class="flex-1 bg-yellow-400 text-amber-950 border-b-4 border-yellow-600 font-black py-3 rounded-2xl active:translate-y-1 active:border-b-0 transition-all text-sm">
+                    Làm lại bài <i class="fa-solid fa-rotate-right"></i>
+                </button>
+                <button onclick="closeResultModal()" class="flex-1 bg-gray-200 text-gray-700 border-b-4 border-gray-400 font-black py-3 rounded-2xl active:translate-y-1 active:border-b-0 transition-all text-sm">
+                    Xem lại đáp án
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Web Audio API Sound Generation logic
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+
+        function playSound(type) {
+            try {
+                if (!audioCtx) audioCtx = new AudioContextClass();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'correct') {
+                    // Ding dong chime
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.35);
+
+                    setTimeout(() => {
+                        const osc2 = audioCtx.createOscillator();
+                        const gain2 = audioCtx.createGain();
+                        osc2.connect(gain2);
+                        gain2.connect(audioCtx.destination);
+                        osc2.type = 'sine';
+                        osc2.frequency.setValueAtTime(659.25, audioCtx.currentTime); // E5
+                        gain2.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                        gain2.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+                        osc2.start();
+                        osc2.stop(audioCtx.currentTime + 0.35);
+                    }, 120);
+                } else if (type === 'wrong') {
+                    // Comical buzz/error sound (Téo tèo tèo)
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(130, audioCtx.currentTime);
+                    osc.frequency.linearRampToValueAtTime(75, audioCtx.currentTime + 0.45);
+                    gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.45);
+                    osc.start();
+                    osc.stop(audioCtx.currentTime + 0.45);
+                }
+            } catch (err) {
+                console.log("Audio synthesis issue: ", err);
+            }
+        }
+
+        // Particle Confetti system
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let confettis = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function spawnConfetti() {
+            confettis = [];
+            for (let i = 0; i < 75; i++) {
+                confettis.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 8 + 6,
+                    color: ['#8854C0', '#FDCB6E', '#00C9A7', '#00D26A', '#FF4757'][Math.floor(Math.random() * 5)],
+                    speedY: Math.random() * 4 + 3,
+                    speedX: Math.random() * 4 - 2,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: Math.random() * 6 - 3
+                });
+            }
+            animateConfetti();
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let activeParticles = false;
+            confettis.forEach(c => {
+                c.y += c.speedY;
+                c.x += c.speedX;
+                c.rotation += c.rotationSpeed;
+                if (c.y < canvas.height) {
+                    activeParticles = true;
+                    ctx.save();
+                    ctx.translate(c.x, c.y);
+                    ctx.rotate(c.rotation * Math.PI / 180);
+                    ctx.fillStyle = c.color;
+                    ctx.fillRect(-c.size / 2, -c.size / 2, c.size, c.size);
+                    ctx.restore();
+                }
+            });
+            if (activeParticles) requestAnimationFrame(animateConfetti);
+        }
+
+        // Fisher-Yates array shuffling algorithm
+        function shuffleArray(array) {
+            let shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Full comprehensive database according to the 100% integrity mandate
+        const database = {
+            "ex1_p1": {
+                title: "Ex 1: Grammar & Vocabulary (Q1-24)",
+                desc: "Chọn từ, cụm từ thích hợp nhất để điền vào chỗ trống.",
+                questions: [
+                    {
+                        id: "ex1_q1",
+                        q: "1. In my country, people always _______ each other with a smile when they meet in the morning.",
+                        options: ["greet", "refuse", "push", "forget"],
+                        answer: "greet",
+                        exp: "1. Dịch nghĩa: Ở nước tôi, mọi người luôn chào đón nhau bằng nụ cười khi gặp mặt vào buổi sáng.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>greet</span> (v): chào đón, chào hỏi.<br>• <span class='exp-word'>refuse</span> (v): từ chối.<br>• <span class='exp-word'>push</span> (v): xô đẩy.<br>• <span class='exp-word'>forget</span> (v): quên lãng.<br>3. Tại sao chọn: Giao tiếp xã giao buổi sáng lịch sự cần hành động chào hỏi vui vẻ.<br>4. Loại trừ: Các hành động đẩy, từ chối, hay quên đều vô lý và bất lịch sự trong ngữ cảnh này."
+                    },
+                    {
+                        id: "ex1_q2",
+                        q: "2. I eat healthy food and exercise every day to _______ healthy and feel good about my life.",
+                        options: ["become", "stay", "leave", "break"],
+                        answer: "stay",
+                        exp: "1. Dịch nghĩa: Tôi ăn thực phẩm lành mạnh và tập thể dục mỗi ngày để giữ được trạng thái khỏe mạnh.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>become</span> (v): trở nên.<br>• <span class='exp-word'>stay</span> (v): giữ, duy trì (Stay healthy: giữ sức khỏe).<br>• <span class='exp-word'>leave</span> (v): rời đi.<br>• <span class='exp-word'>break</span> (v): làm gãy, phá vỡ.<br>3. Tại sao chọn: Collocation thông dụng <span class='exp-word'>stay healthy</span> nghĩa là duy trì phong độ khỏe mạnh.<br>4. Loại trừ: become thường chỉ sự thay đổi trạng thái từ không khỏe sang khỏe, các từ khác sai nghĩa."
+                    },
+                    {
+                        id: "ex1_q3",
+                        q: "3. Many students today prefer to study _______ because they can learn from home at any time.",
+                        options: ["outdoor", "underground", "online", "backward"],
+                        answer: "online",
+                        exp: "1. Dịch nghĩa: Nhiều học sinh ngày nay thích học trực tuyến vì họ có thể học tại nhà vào bất kỳ lúc nào.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>outdoor</span> (adj/adv): ngoài trời.<br>• <span class='exp-word'>underground</span> (adj/adv): dưới lòng đất.<br>• <span class='exp-word'>online</span> (adj/adv): trực tuyến, mạng internet.<br>• <span class='exp-word'>backward</span> (adj/adv): thụt lùi.<br>3. Tại sao chọn: Vế sau 'learn from home' (học ở nhà) chỉ ra hình thức học trực tuyến bằng máy tính/điện thoại.<br>4. Loại trừ: Học ngoài trời hay dưới lòng đất hoàn toàn không khớp với ngữ cảnh tiện ích này."
+                    },
+                    {
+                        id: "ex1_q4",
+                        q: "4. I love Thai food because the spicy _______ makes every meal exciting and different.",
+                        options: ["colour", "flavour", "price", "size"],
+                        answer: "flavour",
+                        exp: "1. Dịch nghĩa: Tôi yêu thích món ăn Thái vì hương vị cay nồng giúp mỗi bữa ăn đều thú vị và khác biệt.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>colour</span> (n): màu sắc.<br>• <span class='exp-word'>flavour</span> (n): hương vị ẩm thực.<br>• <span class='exp-word'>price</span> (n): giá cả.<br>• <span class='exp-word'>size</span> (n): kích thước.<br>3. Tại sao chọn: Tính từ 'spicy' (cay) bổ trợ trực tiếp mô tả cho 'flavour' (hương vị).<br>4. Loại trừ: Không thể nói màu sắc cay, giá cả cay hay kích cỡ món ăn cay được."
+                    },
+                    {
+                        id: "ex1_q5",
+                        q: "5. In traditional Japanese culture, people _______ to show respect when meeting older people.",
+                        options: ["jump", "run", "bow", "swim"],
+                        answer: "bow",
+                        exp: "1. Dịch nghĩa: Trong văn hóa truyền thống Nhật Bản, mọi người cúi chào để bày tỏ lòng tôn trọng với người lớn tuổi.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>jump</span> (v): nhảy lên.<br>• <span class='exp-word'>run</span> (v): chạy.<br>• <span class='exp-word'>bow</span> (v): cúi đầu chào lịch sự.<br>• <span class='exp-word'>swim</span> (v): bơi lội.<br>3. Tại sao chọn: Văn hóa cúi chào nổi tiếng của người Nhật là 'bowing' (hành động bow).<br>4. Loại trừ: Gặp người lớn tuổi mà chạy hay nhảy là hành động vô lễ tinh nghịch."
+                    },
+                    {
+                        id: "ex1_q6",
+                        q: "6. When I study for exams, I need to _______ and turn off my phone to focus better.",
+                        options: ["concentrate", "celebrate", "complain", "compete"],
+                        answer: "concentrate",
+                        exp: "1. Dịch nghĩa: Khi ôn thi, tôi cần phải tập trung cao độ và tắt điện thoại để chú ý tốt hơn.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>concentrate</span> (v): tập trung tinh thần tư duy.<br>• <span class='exp-word'>celebrate</span> (v): ăn mừng lễ hội.<br>• <span class='exp-word'>complain</span> (v): phàn nàn oán trách.<br>• <span class='exp-word'>compete</span> (v): thi đấu cạnh tranh.<br>3. Tại sao chọn: Động từ tập trung hỗ trợ trực tiếp cho cụm 'focus better' ở vế sau.<br>4. Loại trừ: Ăn mừng, phàn nàn hay thi đấu không liên quan tới việc tắt điện thoại ôn bài thi."
+                    },
+                    {
+                        id: "ex1_q7",
+                        q: "7. My family has a very active _______ with sports, healthy meals, and outdoor activities every weekend.",
+                        options: ["problem", "mistake", "accident", "lifestyle"],
+                        answer: "lifestyle",
+                        exp: "1. Dịch nghĩa: Gia đình tôi có một lối sống cực kỳ năng động với các hoạt động thể thao, bữa ăn lành mạnh.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>problem</span> (n): vấn đề nan giải.<br>• <span class='exp-word'>mistake</span> (n): lỗi lầm.<br>• <span class='exp-word'>accident</span> (n): tai nạn bất ngờ.<br>• <span class='exp-word'>lifestyle</span> (n): lối sống, phong cách sinh hoạt.<br>3. Tại sao chọn: 'Active lifestyle' là phong cách sống năng nổ rèn luyện sức khỏe bền vững.<br>4. Loại trừ: Các phương án tiêu cực khác như rắc rối, lỗi lầm, tai nạn làm hỏng hoàn toàn ý nghĩa tích cực của câu."
+                    },
+                    {
+                        id: "ex1_q8",
+                        q: "8. My grandmother always asks me to _______ how to use her smartphone for video calls.",
+                        options: ["explain", "destroy", "hide", "steal"],
+                        answer: "explain",
+                        exp: "1. Dịch nghĩa: Bà ngoại luôn nhờ tôi hướng dẫn giải thích cách sử dụng điện thoại thông minh để gọi video thoại.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>explain</span> (v): giải thích, hướng dẫn chỉ dạy.<br>• <span class='exp-word'>destroy</span> (v): phá hủy đồ đạc.<br>• <span class='exp-word'>hide</span> (v): giấu giếm.<br>• <span class='exp-word'>steal</span> (v): ăn trộm.<br>3. Tại sao chọn: Giải thích cách dùng công nghệ mới là hành động giúp đỡ người già phổ biến tốt đẹp.<br>4. Loại trừ: Phá hủy, giấu hay ăn trộm điện thoại của bà là hành vi xấu xa."
+                    },
+                    {
+                        id: "ex1_q9",
+                        q: "9. Family time is very _______ to me, so I always have dinner with my parents.",
+                        options: ["boring", "dangerous", "precious", "ugly"],
+                        answer: "precious",
+                        exp: "1. Dịch nghĩa: Thời gian quây quần bên gia đình là vô cùng quý giá đối với tôi, vì thế tôi luôn ăn tối cùng cha mẹ.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>boring</span> (adj): tẻ nhạt vô vị.<br>• <span class='exp-word'>dangerous</span> (adj): nguy hiểm chết người.<br>• <span class='exp-word'>precious</span> (adj): quý báu, vô giá.<br>• <span class='exp-word'>ugly</span> (adj): xấu xí.<br>3. Tại sao chọn: Tính quý giá thúc đẩy hành động trân trọng bữa ăn gia đình ấm cúng.<br>4. Loại trừ: Tẻ nhạt, nguy hiểm hay xấu xí mang ý nghĩa tiêu cực không ăn khớp."
+                    },
+                    {
+                        id: "ex1_q10",
+                        q: "10. I am learning to be more _______ and cook my own meals instead of ordering food.",
+                        options: ["dependent", "independent", "lazy", "nervous"],
+                        answer: "independent",
+                        exp: "1. Dịch nghĩa: Tôi đang học cách tự lập hơn và tự nấu các bữa ăn thay vì đặt đồ ăn giao tận nơi.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>dependent</span> (adj): lệ thuộc.<br>• <span class='exp-word'>independent</span> (adj): độc lập, tự chủ tự lập.<br>• <span class='exp-word'>lazy</span> (adj): lười biếng.<br>• <span class='exp-word'>nervous</span> (adj): lo lắng căng thẳng.<br>3. Tại sao chọn: Việc tự lập thể hiện qua hành vi tự nấu ăn chăm sóc sức khỏe bản thân không ỷ lại dịch vụ.<br>4. Loại trừ: Tự nấu ăn không phải là lười biếng hay lo lắng căng thẳng."
+                    },
+                    {
+                        id: "ex1_q11",
+                        q: "11. In Western culture, business people usually _______ hands when they meet for the first time.",
+                        options: ["wash", "shake", "cut", "paint"],
+                        answer: "shake",
+                        exp: "1. Dịch nghĩa: Trong văn hóa phương Tây, các doanh nhân thường bắt tay khi họ gặp nhau lần đầu tiên.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>wash</span> (v): rửa ráy.<br>• <span class='exp-word'>shake</span> (v): lắc mạnh (Shake hands: bắt tay giao hữu).<br>• <span class='exp-word'>cut</span> (v): cắt đứt.<br>• <span class='exp-word'>paint</span> (v): sơn vẽ màu.<br>3. Tại sao chọn: Cụm từ cố định <span class='exp-word'>shake hands</span> mang ý nghĩa bắt tay lịch sự xã giao xã hội.<br>4. Loại trừ: Rửa tay, cắt tay hay vẽ tay hoàn toàn không phải nghi thức ngoại giao."
+                    },
+                    {
+                        id: "ex1_q12",
+                        q: "12. Social media has a huge _______ on how young people communicate and live today.",
+                        options: ["shadow", "impact", "mirror", "window"],
+                        answer: "impact",
+                        exp: "1. Dịch nghĩa: Mạng xã hội đang có sức ảnh hưởng to lớn đến cách thức thế hệ trẻ giao tiếp và sinh sống ngày nay.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>shadow</span> (n): cái bóng mờ.<br>• <span class='exp-word'>impact</span> (n): tác động, sức ảnh hưởng sâu rộng.<br>• <span class='exp-word'>mirror</span> (n): chiếc gương.<br>• <span class='exp-word'>window</span> (n): ô cửa sổ tâm hồn.<br>3. Tại sao chọn: Danh từ chỉ sức ảnh hưởng đi với giới từ 'on' (<span class='exp-word'>impact on someone/something</span>).<br>4. Loại trừ: Các danh từ bóng, gương, cửa sổ đều vô lý."
+                    },
+                    {
+                        id: "ex1_q13",
+                        q: "13. In my family, we always give each other a warm _______ when someone comes home.",
+                        options: ["book", "chair", "hug", "table"],
+                        answer: "hug",
+                        exp: "1. Dịch nghĩa: Trong gia đình tôi, mọi người luôn trao cho nhau một cái ôm ấm áp mỗi khi có ai đó đi xa trở về nhà.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>book</span> (n): quyển sách tri thức.<br>• <span class='exp-word'>chair</span> (n): chiếc ghế tựa.<br>• <span class='exp-word'>hug</span> (n): cái ôm thắm thiết tình thân.<br>• <span class='exp-word'>table</span> (n): cái bàn ăn.<br>3. Tại sao chọn: 'warm hug' thể hiện tình cảm gia đình nồng thắm ấm áp nhất.<br>4. Loại trừ: Tặng sách, bàn, ghế khi vừa bước chân về nhà không tự nhiên bằng một cái ôm."
+                    },
+                    {
+                        id: "ex1_q14",
+                        q: "14. Good _______ helps people have better jobs and improve their quality of life.",
+                        options: ["weather", "education", "accident", "illness"],
+                        answer: "education",
+                        exp: "1. Dịch nghĩa: Nền giáo dục tốt giúp con người có được cơ hội việc làm tốt hơn và cải thiện chất lượng sống.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>weather</span> (n): thời tiết mưa nắng.<br>• <span class='exp-word'>education</span> (n): giáo dục đào tạo học thức.<br>• <span class='exp-word'>accident</span> (n): tai nạn rủi ro.<br>• <span class='exp-word'>illness</span> (n): bệnh tật đau yếu.<br>3. Tại sao chọn: Giáo dục chính là chìa khóa mở rộng cơ hội thăng tiến sự nghiệp và đời sống văn minh.<br>4. Loại trừ: Thời tiết tốt hay tai nạn bệnh tật không giúp ích trực tiếp cho học vấn và công ăn việc làm."
+                    },
+                    {
+                        id: "ex1_q15",
+                        q: "15. I'm always in a _______ in the morning because I wake up late and need to catch the bus.",
+                        options: ["garden", "hurry", "dream", "movie"],
+                        answer: "hurry",
+                        exp: "1. Dịch nghĩa: Tôi luôn trong trạng thái vội vã vào buổi sáng vì thức dậy muộn và phải chạy nhanh cho kịp chuyến xe buýt.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>garden</span> (n): khu vườn xanh mát.<br>• <span class='exp-word'>hurry</span> (n): sự vội vã, hối hả.<br>• <span class='exp-word'>dream</span> (n): giấc mơ.<br>• <span class='exp-word'>movie</span> (n): bộ phim chiếu rạp.<br>3. Tại sao chọn: Cụm từ cố định <span class='exp-word'>in a hurry</span> nghĩa là đang vội vàng khẩn trương thực hiện hành động.<br>4. Loại trừ: Ở trong vườn hay trong phim không giải thích cho hành động chạy kịp xe buýt."
+                    },
+                    {
+                        id: "ex1_q16",
+                        q: "16. Rice is a _______ food in my country, and we eat it with every meal.",
+                        options: ["strange", "rare", "foreign", "staple"],
+                        answer: "staple",
+                        exp: "1. Dịch nghĩa: Lúa gạo là lương thực chủ yếu ở đất nước tôi, chúng tôi dùng nó trong mọi bữa ăn hằng ngày.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>strange</span> (adj): lạ lùng kỳ quặc.<br>• <span class='exp-word'>rare</span> (adj): quý hiếm, ít thấy.<br>• <span class='exp-word'>foreign</span> (adj): thuộc nước ngoài.<br>• <span class='exp-word'>staple</span> (adj): chủ lực, chính yếu, chủ đạo (staple food: lương thực chính).<br>3. Tại sao chọn: Gạo là nông sản truyền thống thiết yếu trong ẩm thực Á Đông của người Việt.<br>4. Loại trừ: Gạo không phải thực phẩm lạ lẫm, quý hiếm hay ngoại lai."
+                    },
+                    {
+                        id: "ex1_q17",
+                        q: "17. There is a big _______ between living in a busy city and a quiet countryside village.",
+                        options: ["similarity", "difference", "copy", "twin"],
+                        answer: "difference",
+                        exp: "1. Dịch nghĩa: Có sự khác biệt vô cùng to lớn giữa lối sống ở thành thị sầm uất và ngôi làng nông thôn thanh bình.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>similarity</span> (n): nét tương đồng.<br>• <span class='exp-word'>difference</span> (n): sự khác biệt rõ rệt.<br>• <span class='exp-word'>copy</span> (n): bản sao chép.<br>• <span class='exp-word'>twin</span> (n): anh em sinh đôi.<br>3. Tại sao chọn: Thành thị sầm uất và nông thôn tĩnh lặng là hai thái cực hoàn toàn khác biệt nhau trái ngược.<br>4. Loại trừ: Không thể chọn nét tương đồng hay sinh đôi giữa hai khái niệm trái ngược hoàn toàn."
+                    },
+                    {
+                        id: "ex1_q18",
+                        q: "18. I like to _______ with people from different countries to learn about their cultures and daily life.",
+                        options: ["fight", "argue", "interact", "ignore"],
+                        answer: "interact",
+                        exp: "1. Dịch nghĩa: Tôi thích tương tác kết nối cùng các bạn bè từ nhiều quốc gia để học hỏi thêm văn hóa lối sống của họ.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>fight</span> (v): đánh lộn ghen ghét.<br>• <span class='exp-word'>argue</span> (v): tranh luận gắt gao.<br>• <span class='exp-word'>interact</span> (v): tương tác, giao lưu hữu nghị.<br>• <span class='exp-word'>ignore</span> (v): lờ đi không quan tâm.<br>3. Tại sao chọn: Động từ giao lưu tương tác 'interact with' giúp phát triển kết nối kiến thức văn hóa mới lành mạnh.<br>4. Loại trừ: Gây gổ đánh nhau hay ngó lơ không đem lại tri thức hữu nghị tốt đẹp."
+                    },
+                    {
+                        id: "ex1_q19",
+                        q: "19. In modern society, people have more _______ to choose their own lifestyle and career.",
+                        options: ["prison", "freedom", "punishment", "chain"],
+                        answer: "freedom",
+                        exp: "1. Dịch nghĩa: Trong xã hội hiện đại ngày nay, con người được ban tặng nhiều sự tự do để tự lựa chọn phong cách sống và nghề nghiệp.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>prison</span> (n): nhà tù tăm tối.<br>• <span class='exp-word'>freedom</span> (n): sự tự do quyết định đời mình.<br>• <span class='exp-word'>punishment</span> (n): hình phạt kỷ luật.<br>• <span class='exp-word'>chain</span> (n): xiềng xích nô lệ.<br>3. Tại sao chọn: Tự do định hướng cuộc đời là ưu tiên nhân văn cao nhất của xã hội hiện đại văn minh.<br>4. Loại trừ: Nhà tù, hình phạt và xiềng xích kìm hãm nhân quyền con người."
+                    },
+                    {
+                        id: "ex1_q20",
+                        q: "20. Some families still live a _______ life, traveling with their animals to find food and water.",
+                        options: ["nomadic", "fixed", "permanent", "stable"],
+                        answer: "nomadic",
+                        exp: "1. Dịch nghĩa: Một số bộ tộc gia đình vẫn duy trì cuộc sống du mục hoang dã, di cư cùng bầy gia súc tìm cỏ nguồn nước.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>nomadic</span> (adj): thuộc về du mục, nay đây mai đó.<br>• <span class='exp-word'>fixed</span> (adj): cố định bất di bất dịch.<br>• <span class='exp-word'>permanent</span> (adj): vĩnh cửu trường tồn lâu dài.<br>• <span class='exp-word'>stable</span> (adj): ổn định yên ấm.<br>3. Tại sao chọn: 'nomadic life' chỉ nếp sống di cư chăn thả gia súc tự do không cố định một nơi định cư.<br>4. Loại trừ: Nếp sống di cư liên tục trái ngược hoàn toàn với nếp sống cố định, lâu dài ổn định."
+                    },
+                    {
+                        id: "ex1_q21",
+                        q: "21. At nice restaurants, waiters _______ traditional dishes that show our local culture and lifestyle.",
+                        options: ["serve", "throw", "burn", "bury"],
+                        answer: "serve",
+                        exp: "1. Dịch nghĩa: Tại các nhà hàng sang trọng lịch sự, bồi bàn phục vụ những món ăn truyền thống đặc trưng văn hóa quê hương.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>serve</span> (v): phục vụ bưng bê đồ ăn uống.<br>• <span class='exp-word'>throw</span> (v): ném vứt bỏ đi.<br>• <span class='exp-word'>burn</span> (v): đốt cháy đen thui.<br>• <span class='exp-word'>bury</span> (v): chôn giấu sâu dưới đất.<br>3. Tại sao chọn: Động từ phục vụ ăn uống chuyên nghiệp chỉ có thể là 'serve'.<br>4. Loại trừ: Hành động quăng ném, đốt cháy hay chôn món ăn trước mặt khách là sai hoàn toàn."
+                    },
+                    {
+                        id: "ex1_q22",
+                        q: "22. I love trying different _______ from food trucks because it shows the real local lifestyle.",
+                        options: ["furniture", "clothes", "street food", "jewelry"],
+                        answer: "street food",
+                        exp: "1. Dịch nghĩa: Tôi đam mê thưởng thức ẩm thực đường phố đa dạng từ những chiếc xe tải bán đồ ăn di động dân dã.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>furniture</span> (n): nội thất gỗ nhà cửa.<br>• <span class='exp-word'>clothes</span> (n): quần áo thời trang mặc hằng ngày.<br>• <span class='exp-word'>street food</span> (n): món ăn đường phố vỉa hè tiện ích.<br>• <span class='exp-word'>jewelry</span> (n): đồ trang sức vòng vàng ngọc trai đắt đỏ.<br>3. Tại sao chọn: Xe tải bán đồ ăn 'food trucks' phân phối trực tiếp món ẩm thực đường phố 'street food' thơm ngon dân dã.<br>4. Loại trừ: Đồ gỗ nội thất, quần áo hay trang sức đắt tiền không bán từ xe tải thực phẩm ẩm thực."
+                    },
+                    {
+                        id: "ex1_q23",
+                        q: "23. I _______ wake up at 6 AM, have breakfast, and go jogging before starting my day.",
+                        options: ["never", "normally", "rarely", "impossibly"],
+                        answer: "normally",
+                        exp: "1. Dịch nghĩa: Tôi thường thức dậy lúc 6 giờ sáng, ăn sáng đầy đủ dinh dưỡng rồi chạy bộ rèn luyện sức khỏe.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>never</span> (adv): không bao giờ từ trước tới nay.<br>• <span class='exp-word'>normally</span> (adv): thông thường, đều đặn bình thường hằng ngày.<br>• <span class='exp-word'>rarely</span> (adv): hiếm khi thực hiện.<br>• <span class='exp-word'>impossibly</span> (adv): một cách bất khả thi không thể xảy ra.<br>3. Tại sao chọn: Trạng từ tần suất chỉ thói quen sống lành mạnh buổi sáng đều đặn bình thường.<br>4. Loại trừ: Không bao giờ hay hiếm khi không mô tả đúng thói quen chuẩn bị ngày mới năng động."
+                    },
+                    {
+                        id: "ex1_q24",
+                        q: "24. \"Good morning\" is a friendly _______ that makes everyone's day start better.",
+                        options: ["insult", "greeting", "complaint", "warning"],
+                        answer: "greeting",
+                        exp: "1. Dịch nghĩa: Câu chào hỏi 'Chào buổi sáng' là lời chào hỏi ấm áp giúp khởi đầu ngày mới ngập tràn niềm vui.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>insult</span> (n): lời nhục mạ xúc phạm vô văn hóa.<br>• <span class='exp-word'>greeting</span> (n): lời chào hỏi xã giao thân tình.<br>• <span class='exp-word'>complaint</span> (n): lời than vãn khiếu nại oán trách.<br>• <span class='exp-word'>warning</span> (n): lời cảnh báo nguy hiểm sắp tới.<br>3. Tại sao chọn: 'Good morning' là phát ngôn kinh điển cho lời chào lịch thiệp xã hội xã giao.<br>4. Loại trừ: Lời xúc phạm, than thở hay cảnh báo mang sắc thái căng thẳng không phù hợp để bắt đầu ngày mới vui tươi."
+                    }
+                ]
+            },
+            "ex1_p2": {
+                title: "Ex 1: Grammar & Vocabulary (Q25-50)",
+                desc: "Tiếp tục ôn luyện các kiến thức từ vựng, ngữ pháp cốt lõi từ câu 25 tới câu 50.",
+                questions: [
+                    {
+                        id: "ex1_q25",
+                        q: "25. Living in another country for a year was an amazing _______ that changed my view of life.",
+                        options: ["failure", "disaster", "experience", "nightmare"],
+                        answer: "experience",
+                        exp: "1. Dịch nghĩa: Sống học tập tự lập tại nước ngoài một năm ròng rã là trải nghiệm đáng giá làm thay đổi nhân sinh quan của tôi.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>failure</span> (n): sự thất bại cay đắng.<br>• <span class='exp-word'>disaster</span> (n): thảm họa diệt vong thiên nhiên.<br>• <span class='exp-word'>experience</span> (n): trải nghiệm thực tế quý báu tích lũy kiến thức.<br>• <span class='exp-word'>nightmare</span> (n): cơn ác mộng kinh dị khi ngủ.<br>3. Tại sao chọn: 'amazing experience' (trải nghiệm tuyệt diệu) giúp mở mang tầm mắt và làm phong phú tâm hồn.<br>4. Loại trừ: Sống ở nước ngoài không thể quy chụp là thảm họa hay ác mộng nếu nó mang nghĩa tích cực thay đổi tích cực góc nhìn cuộc sống."
+                    },
+                    {
+                        id: "ex1_q26",
+                        q: "26. I try to _______ fast food because I want to maintain a healthy lifestyle.",
+                        options: ["collect", "avoid", "gather", "search"],
+                        answer: "avoid",
+                        exp: "1. Dịch nghĩa: Tôi cố gắng né tránh xa đồ ăn nhanh nhiều dầu mỡ vì tôi muốn gìn giữ lối sống khỏe mạnh khoa học.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>collect</span> (v): thu thập tích trữ.<br>• <span class='exp-word'>avoid</span> (v): né tránh hành vi nguy hại.<br>• <span class='exp-word'>gather</span> (v): tụ tập sum họp lại.<br>• <span class='exp-word'>search</span> (v): tìm kiếm trên mạng xã hội mạng máy tính.<br>3. Tại sao chọn: Muốn khỏe mạnh 'healthy' cần tránh xa 'avoid' đồ ăn chiên rán nhiều dầu mỡ xấu cho cơ thể.<br>4. Loại trừ: Thu gom hay tìm kiếm thêm đồ ăn nhanh sẽ phá hỏng hoàn toàn mục tiêu sống lành mạnh đề ra."
+                    },
+                    {
+                        id: "ex1_q27",
+                        q: "27. Many countries have _______ dances that show their traditional way of life and beliefs.",
+                        options: ["modern", "digital", "robotic", "tribal"],
+                        answer: "tribal",
+                        exp: "1. Dịch nghĩa: Nhiều quốc gia sở hữu các điệu múa bộ lạc thể hiện sinh động nếp sống tâm linh lâu đời truyền thống của họ.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>modern</span> (adj): tối tân hiện đại ngày nay.<br>• <span class='exp-word'>digital</span> (adj): thuộc kỹ thuật số máy móc máy tính.<br>• <span class='exp-word'>robotic</span> (adj): tự động hóa như người máy rô-bốt.<br>• <span class='exp-word'>tribal</span> (adj): thuộc về bộ tộc, bộ lạc cổ xưa lâu đời.<br>3. Tại sao chọn: Điệu nhảy bộ tộc 'tribal dances' lột tả chân thực nếp sống dân dã sơ khai của con người cổ xưa.<br>4. Loại trừ: Các từ hiện đại, kỹ thuật số, rô-bốt không liên kết được với bản sắc di sản truyền thống tâm linh xưa cũ."
+                    },
+                    {
+                        id: "ex1_q28",
+                        q: "28. Young people want to _______ old traditions and mix them with modern lifestyle.",
+                        options: ["revive", "kill", "damage", "erase"],
+                        answer: "revive",
+                        exp: "1. Dịch nghĩa: Thế hệ trẻ ngày nay mong muốn phục hưng, làm sống dậy các giá trị truyền thống xưa cũ và hòa quyện cùng nhịp sống hiện đại năng động.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>revive</span> (v): làm sống lại, phục hưng phát triển lại.<br>• <span class='exp-word'>kill</span> (v): tiêu diệt chết chóc.<br>• <span class='exp-word'>damage</span> (v): phá hủy hỏng hóc tài sản cơ sở vật chất.<br>• <span class='exp-word'>erase</span> (v): xóa nhòa vết mực tăm tối.<br>3. Tại sao chọn: Phục hưng di sản văn hóa tổ tiên 'revive old traditions' là trào lưu nhân văn tích cực sâu rộng ngày nay.<br>4. Loại trừ: Xóa sổ hay hủy hoại di sản văn hóa là hành động phá hoại phi đạo đức không ai hướng tới."
+                    },
+                    {
+                        id: "ex1_q29",
+                        q: "29. I have a morning _______ of doing yoga and drinking green tea before work.",
+                        options: ["fear", "habit", "enemy", "danger"],
+                        answer: "habit",
+                        exp: "1. Dịch nghĩa: Tôi có một thói quen buổi sáng là tập bộ môn yoga điều hòa hơi thở và nhâm nhi một tách trà xanh ấm áp trước khi đi làm.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>fear</span> (n): nỗi sợ hãi tột cùng bóng tối dã thú.<br>• <span class='exp-word'>habit</span> (n): thói quen, nếp sống định hình lặp đi lặp lại hằng ngày hằng giờ.<br>• <span class='exp-word'>enemy</span> (n): kẻ thù truyền kiếp xung đột chính trị.<br>• <span class='exp-word'>danger</span> (n): mối hiểm nguy đe dọa trực tiếp an toàn.<br>3. Tại sao chọn: Tập yoga buổi sáng là thói quen 'habit' tốt tích cực vô cùng lành mạnh thể chất và tinh thần.<br>4. Loại trừ: Nỗi sợ, kẻ thù hay hiểm nguy không dùng để mô tả việc tận hưởng yoga ấm áp vui tươi bình yên."
+                    },
+                    {
+                        id: "ex1_q30",
+                        q: "30. Exercising three times a week is a _______ among people who care about their health.",
+                        options: ["common practice", "rare event", "strange idea", "bad memory"],
+                        answer: "common practice",
+                        exp: "1. Dịch nghĩa: Việc luyện tập thể dục thể thao ba lần mỗi tuần đã trở thành một thông lệ quen thuộc đối với những ai thực sự chú trọng gìn giữ sức khỏe vàng ngọc.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>common practice</span> (n): thói quen phổ biến, thông lệ quen thuộc hằng ngày của cộng đồng xã hội.<br>• <span class='exp-word'>rare event</span> (n): sự kiện hy hữu hiếm gặp trong đời.<br>• <span class='exp-word'>strange idea</span> (n): ý tưởng kỳ dị dở hơi khác người.<br>• <span class='exp-word'>bad memory</span> (n): ký ức buồn bã tồi tệ đau đớn.<br>3. Tại sao chọn: Tập thể dục rèn luyện thân thể đều đặn là thói quen tốt phổ biến tốt đẹp trong cộng đồng sống lành mạnh ngày nay.<br>4. Loại trừ: Đây không phải ý tưởng điên rồ hay sự kiện hiếm hoi đau buồn nào cả."
+                    },
+                    {
+                        id: "ex1_q31",
+                        q: "31. Some older people prefer _______ shopping at real stores because they enjoy meeting people face-to-face.",
+                        options: ["invisible", "imaginary", "offline", "fictional"],
+                        answer: "offline",
+                        exp: "1. Dịch nghĩa: Một số người cao tuổi vẫn ưa chuộng hình thức mua sắm trực tiếp tại các cửa hàng truyền thống vì họ trân trọng tương tác gặp mặt trực diện trò chuyện.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>invisible</span> (adj): vô hình không thể nhìn thấy bằng mắt thường.<br>• <span class='exp-word'>imaginary</span> (adj): ảo tưởng hư cấu chỉ có trong trí óc ảo ảnh.<br>• <span class='exp-word'>offline</span> (adj): mua sắm trực tiếp bên ngoài không qua internet.<br>• <span class='exp-word'>fictional</span> (adj): hư cấu tiểu thuyết văn học dân gian.<br>3. Tại sao chọn: 'Offline shopping' là nếp mua sắm truyền thống thực tế của các thế hệ xưa cũ thích đi chợ trực tiếp.<br>4. Loại trừ: Các từ vô hình, tưởng tượng hay hư cấu làm câu văn biến thành chuyện khoa học viễn tưởng vô lý."
+                    },
+                    {
+                        id: "ex1_q32",
+                        q: "32. Traditional festivals _______ tourists who want to experience local lifestyle and culture.",
+                        options: ["bore", "fascinate", "frighten", "confuse"],
+                        answer: "fascinate",
+                        exp: "1. Dịch nghĩa: Các lễ hội cổ truyền luôn thu hút, mê hoặc mãnh liệt những du khách phương xa muốn trải nghiệm thực tế văn hóa lối sống bản xứ.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>bore</span> (v): làm tẻ nhạt chán nản ngao ngán.<br>• <span class='exp-word'>fascinate</span> (v): lôi cuốn, mê hoặc cuốn hút tâm trí.<br>• <span class='exp-word'>frighten</span> (v): dọa nạt làm sợ hãi hồn bay phách lạc.<br>• <span class='exp-word'>confuse</span> (v): gây bối rối hoang mang lộn xộn đầu óc.<br>3. Tại sao chọn: Lễ hội rực rỡ sắc màu văn hóa luôn mang sức mạnh lôi cuốn 'fascinate' du khách tìm đến chiêm ngưỡng.<br>4. Loại trừ: Làm chán, dọa dẫm hay gây hoang mang không mô tả đúng sức hút của du lịch văn hóa tích cực."
+                    },
+                    {
+                        id: "ex1_q33",
+                        q: "33. During the pandemic, _______ became popular as students could study from home safely.",
+                        options: ["mountain climbing", "deep diving", "online learning", "cave exploring"],
+                        answer: "online learning",
+                        exp: "1. Dịch nghĩa: Suốt thời kỳ dịch bệnh bùng phát, học tập trực tuyến đã trở nên phổ biến giúp học sinh có thể tiếp thu bài học tại nhà an toàn tuyệt đối.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>mountain climbing</span>: leo núi mạo hiểm.<br>• <span class='exp-word'>deep diving</span>: lặn sâu dưới lòng đại dương xanh thẳm.<br>• <span class='exp-word'>online learning</span>: phương pháp học trực tuyến qua internet mạng máy tính tại nhà.<br>• <span class='exp-word'>cave exploring</span>: khám phá hang động kỳ vĩ hiểm trở.<br>3. Tại sao chọn: 'study from home safely' (học an toàn tại nhà) chính là định nghĩa chuẩn của phương thức online learning hiện đại tiện ích.<br>4. Loại trừ: Dịch bệnh mà rủ đi leo núi, lặn biển hay thám hiểm hang động vừa nguy hiểm vừa vi phạm quy tắc phòng dịch xã hội."
+                    },
+                    {
+                        id: "ex1_q34",
+                        q: "34. On weekends, I walk _______ through the park and enjoy nature without rushing.",
+                        options: ["angrily", "sadly", "fearfully", "leisurely"],
+                        answer: "leisurely",
+                        exp: "1. Dịch nghĩa: Vào cuối tuần thảnh thơi, tôi thường thong dong dạo bước trong công viên xanh mát và tận hưởng trọn vẹn thiên nhiên mà không cần vội vã hối hả.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>angrily</span> (adv): một cách tức giận đỏ mặt tía tai phẫn nộ.<br>• <span class='exp-word'>sadly</span> (adv): một cách u sầu khóc lóc tủi thân.<br>• <span class='exp-word'>fearfully</span> (adv): một cách sợ hãi run lẩy bẩy lo lắng.<br>• <span class='exp-word'>leisurely</span> (adv): một cách thong thả, thư thái từ tốn bình yên.<br>3. Tại sao chọn: Đi dạo công viên thư giãn cuối tuần cần tâm thế từ tốn 'leisurely' không hối hả 'without rushing'.<br>4. Loại trừ: Giận dữ, u buồn hay sợ hãi phá hỏng hoàn toàn giây phút thư giãn quý giá cùng tự nhiên cỏ cây."
+                    },
+                    {
+                        id: "ex1_q35",
+                        q: "35. A healthy lifestyle requires good _______ between family members who support each other.",
+                        options: ["conflict", "interaction", "separation", "distance"],
+                        answer: "interaction",
+                        exp: "1. Dịch nghĩa: Một tổ ấm lối sống lành mạnh bền vững đòi hỏi sự gắn kết tương tác tốt đẹp giữa các thành viên luôn nâng đỡ sẻ chia nhau mọi lúc.<br>2. Phân tích các từ vựng:<br>• <span class='exp-word'>conflict</span> (n): sự mâu thuẫn tranh chấp cãi cọ nảy lửa.<br>• <span class='exp-word'>interaction</span> (n): sự tương tác gắn kết thấu hiểu tình thân.<br>• <span class='exp-word'>separation</span> (n): sự ly thân ly biệt xa cách chia lìa tình cảm.<br>• <span class='exp-word'>distance</span> (n): khoảng cách địa lý ngăn trở giao tiếp xã hội.<br>3. Tại sao chọn: Gắn kết thấu hiểu 'interaction' giúp mọi người nâng đỡ sẻ chia 'support each other' bền chặt hơn hằng ngày hằng giờ.<br>4. Loại trừ: Tranh cãi cọ, chia lìa ly tán hay khoảng cách lạnh nhạt sẽ hủy hoại hoàn toàn hạnh phúc thiêng liêng gia đình ấm áp."
+                    },
+                    {
+                        id: "ex1_q36",
+                        q: "36. Tomorrow morning at 6 o'clock, I _______ to the gym to exercise with my best friend.",
+                        options: ["go", "went", "will go", "going"],
+                        answer: "will go",
+                        exp: "1. Dịch nghĩa: Vào lúc 6 giờ sáng ngày mai, tôi sẽ hăng hái tới phòng tập thể hình để rèn luyện cùng người bạn thân nhất.<br>2. Phân tích ngữ pháp: Dấu hiệu thời gian tương lai rõ rệt <span class='exp-word'>Tomorrow morning</span> (Sáng ngày mai).<br>3. Tại sao chọn: Công thức tương lai đơn giản chỉ hành động sẽ xảy ra trong tương lai gần: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: Hiện tại đơn 'go', quá khứ đơn 'went' hay danh động từ 'going' đều chia sai mốc thời gian tương lai ngày mai này."
+                    },
+                    {
+                        id: "ex1_q37",
+                        q: "37. My mother says she _______ cook fast food anymore because she wants our family to be healthy.",
+                        options: ["won't", "don't", "isn't", "doesn't"],
+                        answer: "won't",
+                        exp: "1. Dịch nghĩa: Mẹ tôi khẳng định bà sẽ không bao giờ nấu đồ ăn nhanh nữa vì muốn cả gia đình luôn dồi dào sức khỏe.<br>2. Phân tích ngữ pháp: Lời hứa hẹn quyết tâm của mẹ về một hành động sẽ thực hiện lâu dài trong tương lai.<br>3. Tại sao chọn: Trợ động từ tương lai phủ định chỉ quyết tâm không làm việc xấu nữa: <span class='exp-word'>won't (will not) + V-inf</span>.<br>4. Loại trừ: 'don't' hay 'doesn't' không mang tính cam kết quyết tâm tương lai sâu sắc, 'isn't' sai cấu trúc đi với động từ nguyên mẫu 'cook'."
+                    },
+                    {
+                        id: "ex1_q38",
+                        q: "38. _______ you come to my house and teach me how to make healthy smoothies next Sunday?",
+                        options: ["Are", "Will", "Do", "Does"],
+                        answer: "Will",
+                        exp: "1. Dịch nghĩa: Bạn có thể vui lòng ghé qua nhà và chỉ cho tớ cách làm món sinh tố lành mạnh vào chủ nhật tới được không?<br>2. Phân tích ngữ pháp: Dấu hiệu tương lai <span class='exp-word'>next Sunday</span> (Chủ nhật tuần tới) kết hợp cấu trúc lời yêu cầu đề nghị lịch sự tương lai.<br>3. Cấu trúc câu hỏi tương lai: <span class='exp-word'>Will + S + V-inf...?</span> đóng vai trò đưa ra lời mời, lời thỉnh cầu khéo léo thân mật.<br>4. Loại trừ: 'Are' không đi với V-inf, 'Do/Does' thuộc hiện tại đơn không phù hợp với mốc thời gian chủ nhật tới này."
+                    },
+                    {
+                        id: "ex1_q39",
+                        q: "39. My grandparents _______ fresh vegetables from the local farmers' market this Saturday morning.",
+                        options: ["will buy", "buying", "buy", "bought"],
+                        answer: "will buy",
+                        exp: "1. Dịch nghĩa: Ông bà tôi sẽ mua rau quả tươi ngon từ phiên chợ nông sản địa phương vào sáng thứ Bảy tuần này.<br>2. Phân tích ngữ pháp: Dấu hiệu chỉ kế hoạch tương lai gần <span class='exp-word'>this Saturday morning</span> (Sáng thứ Bảy này).<br>3. Áp dụng thì tương lai đơn giản diễn tả một hành động chắc chắn sẽ xảy ra: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: buying thiếu trợ động từ tobe, buy chỉ thói quen chung chung không nhấn mạnh tính kế hoạch, bought chia quá khứ hoàn toàn sai lệch mốc thời gian."
+                    },
+                    {
+                        id: "ex1_q40",
+                        q: "40. I think in the future, more young people _______ vegetarian food to protect the environment.",
+                        options: ["will eat", "eating", "eats", "ate"],
+                        answer: "will eat",
+                        exp: "1. Dịch nghĩa: Tôi tin rằng trong tương lai xa, sẽ ngày càng nhiều bạn trẻ lựa chọn dùng đồ ăn chay để bảo vệ môi trường sinh thái.<br>2. Phân tích ngữ pháp: Cụm chỉ tương lai giả định <span class='exp-word'>in the future</span> đi kèm động từ thể hiện quan điểm 'I think'.<br>3. Khi dự đoán một xu hướng tương lai không có căn cứ chắc chắn, ta dùng cấu trúc tương lai đơn: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: eating thiếu 'be', eats hiện tại đơn và ate quá khứ đơn đều sai lệch về mặt thời gian tương lai."
+                    },
+                    {
+                        id: "ex1_q41",
+                        q: "41. Next month, my whole family _______ a new exercise program to stay fit together.",
+                        options: ["starting", "will start", "starts", "started"],
+                        answer: "will start",
+                        exp: "1. Dịch nghĩa: Vào tháng tới, đại gia đình chúng tôi sẽ cùng nhau khởi động một chương trình rèn luyện thể chất mới để nâng cao sức khỏe.<br>2. Phân tích cấu trúc ngữ pháp tương lai: Dấu hiệu tương lai <span class='exp-word'>Next month</span> (Tháng tới) rõ rệt.<br>3. Áp dụng cấu trúc tương lai đơn chỉ một sự kiện dự kiến diễn ra sắp tới: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: starts chỉ thói quen hiện tại, started quá khứ đơn, starting thiếu tobe cấu thành dạng tiếp diễn."
+                    },
+                    {
+                        id: "ex1_q42",
+                        q: "42. _______ your parents try the Mediterranean diet when they retire next year?",
+                        options: ["Do", "Are", "Will", "Does"],
+                        answer: "Will",
+                        exp: "1. Dịch nghĩa: Liệu cha mẹ cậu có muốn dùng thử chế độ ăn kiêng Địa Trung Hải khi họ chính thức nghỉ hưu vào năm tới không?<br>2. Phân tích ngữ pháp: Liên kết mệnh đề chỉ thời gian tương lai với liên từ <span class='exp-word'>when they retire next year</span>.<br>3. Mệnh đề chính trong câu điều kiện/thời gian tương lai cần chia tương lai đơn: <span class='exp-word'>Will + S + V-inf?</span>.<br>4. Loại trừ: Do/Does không tương thích với mốc nghỉ hưu sang năm, Are không đi cùng động từ nguyên thể 'try'."
+                    },
+                    {
+                        id: "ex1_q43",
+                        q: "43. I'm really tired after work today. I think I _______ some green tea to relax.",
+                        options: ["drinking", "will drink", "drank", "drink"],
+                        answer: "will drink",
+                        exp: "1. Dịch nghĩa: Tôi thực sự kiệt sức sau ca làm việc hôm nay rồi. Tớ nghĩ tớ sẽ nhâm nhi chút trà xanh để giải tỏa áp lực mệt mỏi.<br>2. Phân tích ngữ pháp tương lai tại thời điểm nói: Quyết định được đưa ra tức thời ngay tại lúc nói do mệt mỏi 'tired after work today'.<br>3. Quyết định tự phát tức thời cần chia thì tương lai đơn giản: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: drank chia quá khứ hoàn toàn phi logic vì hành động uống chưa bắt đầu diễn ra, drinking thiếu 'be', drink hiện tại đơn không nhấn mạnh quyết định tức thời."
+                    },
+                    {
+                        id: "ex1_q44",
+                        q: "44. My doctor says I _______ probably feel better if I do yoga every morning.",
+                        options: ["will", "am", "do", "is"],
+                        answer: "will",
+                        exp: "1. Dịch nghĩa: Bác sĩ khuyên rằng cơ thể tôi chắc chắn sẽ cải thiện khỏe khoắn hơn nếu tôi chăm chỉ tập yoga vào mỗi sớm mai.<br>2. Phân tích ngữ pháp: Câu điều kiện loại 1 (Conditional Type 1) với cấu trúc mệnh đề điều kiện ở hiện tại đơn 'if I do'.<br>3. Mệnh đề chính của câu điều kiện loại 1 chỉ kết quả có khả năng xảy ra ở tương lai: <span class='exp-word'>S + will + V-inf</span> (will probably feel).<br>4. Loại trừ: am, do, is đều chia hiện tại đơn giản, không đúng cấu trúc mệnh đề kết quả điều kiện loại 1."
+                    },
+                    {
+                        id: "ex1_q45",
+                        q: "45. From next week, they _______ healthy lunch boxes to work instead of buying fast food.",
+                        options: ["bringing", "brings", "will bring", "brought"],
+                        answer: "will bring",
+                        exp: "1. Dịch nghĩa: Bắt đầu từ tuần tới, họ sẽ chủ động mang cơm hộp lành mạnh tự chuẩn bị đi làm thay vì mua đồ ăn nhanh bên ngoài.<br>2. Phân tích ngữ pháp: Dấu hiệu thời gian bắt đầu từ tương lai <span class='exp-word'>From next week</span> (Từ tuần sau).<br>3. Áp dụng thì tương lai đơn để diễn đạt định hướng kế hoạch thói quen mới trong tương lai: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: brings hiện tại đơn chỉ thói quen cũ, brought chia quá khứ đơn, bringing thiếu động từ liên kết hệ từ 'be' chia tiếp diễn."
+                    },
+                    {
+                        id: "ex1_q46",
+                        q: "46. I promise that I _______ you prepare healthy meals for your family every weekend.",
+                        options: ["helping", "will help", "helps", "helped"],
+                        answer: "will help",
+                        exp: "1. Dịch nghĩa: Tớ hứa danh dự rằng tớ sẽ hỗ trợ cậu chuẩn bị các bữa cơm dinh dưỡng gia đình vào mỗi cuối tuần.<br>2. Phân tích ngữ pháp lời hứa: Xuất hiện động từ cam kết mạnh mẽ <span class='exp-word'>I promise that...</span> (Tôi hứa rằng...).<br>3. Lời hứa hẹn luôn luôn đi kèm với cấu trúc tương lai đơn giản: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: helps hiện tại đơn, helped quá khứ đơn, helping thiếu trợ động từ tobe."
+                    },
+                    {
+                        id: "ex1_q47",
+                        q: "47. We _______ to that expensive fitness center because we can exercise at home for free this month.",
+                        options: ["not go", "won't go", "don't going", "isn't go"],
+                        answer: "won't go",
+                        exp: "1. Dịch nghĩa: Chúng tôi sẽ không đăng ký phòng tập thể hình đắt đỏ kia đâu vì chúng tôi có thể tự tập ở nhà miễn phí hoàn toàn trong tháng này.<br>2. Phân tích ngữ pháp tương lai phủ định: Quyết định từ chối thực hiện hành động tương lai do đã có phương án tập luyện tại gia miễn phí 'exercise at home for free'.<br>3. Động từ khuyết thiếu phủ định tương lai chuẩn cấu trúc: <span class='exp-word'>won't (will not) + V-inf</span>.<br>4. Loại trừ: not go thiếu trợ động từ tương thích, don't going sai ngữ pháp đi kèm đuôi -ing, isn't go sai cấu trúc hệ từ."
+                    },
+                    {
+                        id: "ex1_q48",
+                        q: "48. What time _______ you start your morning meditation routine when you begin tomorrow?",
+                        options: ["are", "do", "will", "is"],
+                        answer: "will",
+                        exp: "1. Dịch nghĩa: Cậu dự kiến sẽ bắt đầu bài thiền định buổi sáng vào mấy giờ khi bắt đầu thực hành vào ngày mai?<br>2. Phân tích ngữ pháp câu hỏi: Sự kiện sẽ diễn ra ở tương lai gần có mốc thời gian rõ rệt <span class='exp-word'>tomorrow</span> (ngày mai).<br>3. Áp dụng câu hỏi nghi vấn WH- của tương lai đơn giản: <span class='exp-word'>WH-word + will + S + V-inf...?</span>.<br>4. Loại trừ: do chỉ hiện tại đơn thuần, are/is không tương thích đi kèm động từ hành động nguyên thể 'start'."
+                    },
+                    {
+                        id: "ex1_q49",
+                        q: "49. The weather forecast says maybe it _______ this afternoon, so let's exercise indoors.",
+                        options: ["will rain", "raining", "rains", "rained"],
+                        answer: "will rain",
+                        exp: "1. Dịch nghĩa: Dự báo thời tiết cho hay có thể trời sẽ mưa vào chiều nay đấy, vì vậy chúng ta hãy cùng nhau tập luyện trong nhà nhé.<br>2. Phân tích ngữ pháp dự đoán: Có từ dự đoán khả năng mơ hồ <span class='exp-word'>maybe</span> (có lẽ) kết hợp mốc chiều nay 'this afternoon'.<br>3. Đưa ra dự đoán thời tiết không có bằng chứng khoa học tức thì cần dùng tương lai đơn: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: raining thiếu 'is', rains chỉ quy luật tự nhiên lặp lại, rained chia quá khứ hoàn toàn sai mốc thời gian."
+                    },
+                    {
+                        id: "ex1_q50",
+                        q: "50. I believe that smart technology _______ the way we monitor our health in the next decade.",
+                        options: ["will change", "changing", "changes", "changed"],
+                        answer: "will change",
+                        exp: "1. Dịch nghĩa: Tôi vững tin rằng công nghệ thông minh sẽ định hình lại toàn diện cách thức chúng ta theo dõi sức khỏe trong thập kỷ tới.<br>2. Phân tích ngữ pháp dự báo dài hạn: Xuất hiện cụm mốc thời gian tương lai dài <span class='exp-word'>in the next decade</span> (trong thập kỷ tới) kết hợp động từ niềm tin 'I believe'.<br>3. Dự đoán tương lai xa tin tưởng của người nói: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: changes hiện tại đơn, changed quá khứ đơn, changing thiếu 'be' liên kết."
+                    }
+                ]
+            },
+            "ex1_p3": {
+                title: "Ex 1: Grammar & Vocabulary (Q51-75)",
+                desc: "Thực hành cấu trúc câu điều kiện loại 1 và động từ khuyết thiếu tương lai từ câu 51 tới câu 75.",
+                questions: [
+                    {
+                        id: "ex1_q51",
+                        q: "51. _______ you please show me how to use this fitness app on my phone?",
+                        options: ["Are", "Do", "Will", "Does"],
+                        answer: "Will",
+                        exp: "1. Dịch nghĩa: Cậu có thể vui lòng hướng dẫn tớ cách sử dụng ứng dụng tập thể dục trên điện thoại này được không?<br>2. Phân tích ngữ pháp: Đưa ra lời nhờ vả lịch thiệp đề nghị ai đó thực hiện hành động hỗ trợ mình.<br>3. Cấu trúc câu yêu cầu nhờ vả thông dụng: <span class='exp-word'>Will/Would + S + please + V-inf...?</span>.<br>4. Loại trừ: Are không đi kèm V-inf, Do/Does không dùng cho sắc thái cầu khẩn nhờ vả lịch thiệp tương lai này."
+                    },
+                    {
+                        id: "ex1_q52",
+                        q: "52. Next summer vacation, my family _______ to Korea to learn about their healthy eating culture.",
+                        options: ["traveling", "will travel", "travels", "traveled"],
+                        answer: "will travel",
+                        exp: "1. Dịch nghĩa: Vào kỳ nghỉ hè tới, gia đình tôi sẽ du ngoạn sang Hàn Quốc để khám phá văn hóa ẩm thực dưỡng sinh lành mạnh của họ.<br>2. Phân tích ngữ pháp tương lai gần: Dấu hiệu chỉ kế hoạch hè tới <span class='exp-word'>Next summer vacation</span> (Kỳ nghỉ hè tới).<br>3. Áp dụng thì tương lai đơn giản chỉ kế hoạch định hướng sẽ triển khai: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: traveled chia quá khứ hoàn toàn sai lệch mốc thời gian nghỉ hè tới, travels chỉ thói quen định kỳ hằng năm, traveling thiếu trợ động từ hệ từ 'be'."
+                    },
+                    {
+                        id: "ex1_q53",
+                        q: "53. She _______ to that expensive organic food shop because the prices are too high for students.",
+                        options: ["won’t go", "don’t go", "isn’t go", "not going"],
+                        answer: "won’t go",
+                        exp: "1. Dịch nghĩa: Cô ấy sẽ không ghé mua sắm ở cửa hàng thực phẩm hữu cơ đắt đỏ kia đâu vì giá bán ở đó quá cao so với túi tiền học sinh.<br>2. Phân tích ngữ pháp: Dự đoán hành vi tương lai dựa trên lý do thực tế giá bán quá đắt đỏ không phù hợp tài chính học sinh.<br>3. Dạng tương lai đơn phủ định chỉ xu hướng hành vi chắc chắn không làm: <span class='exp-word'>S + won't (will not) + V-inf</span>.<br>4. Loại trừ: don't go sai ngôi số ít (She), isn't go sai hệ từ, not going thiếu động từ khuyết thiếu tương lai."
+                    },
+                    {
+                        id: "ex1_q54",
+                        q: "54. I think in 10 years, most people _______ more aware of mental health importance.",
+                        options: ["being", "will be", "is", "are"],
+                        answer: "will be",
+                        exp: "1. Dịch nghĩa: Tôi nghĩ rằng trong vòng 10 năm tới, phần lớn mọi người sẽ nhận thức sâu sắc hơn về tầm quan trọng của sức khỏe tinh thần tâm lý.<br>2. Phân tích ngữ pháp tương lai xa: Cụm dấu hiệu thời gian dự báo tương lai 10 năm nữa <span class='exp-word'>in 10 years</span> kết hợp suy nghĩ cá nhân 'I think'.<br>3. Động từ tobe chia ở tương lai đơn giản để liên kết tính từ: <span class='exp-word'>S + will + be + Adjective</span>.<br>4. Loại trừ: is/are chia hiện tại đơn giản hoàn toàn sai lệch mốc dự báo 10 năm tới."
+                    },
+                    {
+                        id: "ex1_q55",
+                        q: "55. Our community center _______ free healthy cooking classes for elderly people next month.",
+                        options: ["will organize", "organizing", "organizes", "organized"],
+                        answer: "will organize",
+                        exp: "1. Dịch nghĩa: Trung tâm văn hóa cộng đồng chúng ta sẽ mở các lớp dạy nấu ăn dinh dưỡng miễn phí cho người cao tuổi vào tháng tới.<br>2. Phân tích ngữ pháp: Có dấu hiệu thời gian tháng sau <span class='exp-word'>next month</span> rõ rệt.<br>3. Áp dụng thì tương lai đơn giản chỉ sự kiện cộng đồng đã được thông qua kế hoạch: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: organized quá khứ đơn, organizes hiện tại đơn, organizing thiếu 'is' tạo thì tiếp diễn."
+                    },
+                    {
+                        id: "ex1_q56",
+                        q: "56. Very soon, all schools in our city _______ the importance of daily physical exercise.",
+                        options: ["will understand", "understanding", "understands", "understood"],
+                        answer: "will understand",
+                        exp: "1. Dịch nghĩa: Chắc chắn rất sớm thôi, tất cả các trường học trong thành phố sẽ thấu hiểu sâu sắc vai trò của việc rèn luyện thể chất hằng ngày.<br>2. Phân tích ngữ pháp: Xuất hiện trạng từ chỉ thời gian tương lai cực gần <span class='exp-word'>Very soon</span> (Rất sớm thôi).<br>3. Áp dụng thì tương lai đơn chỉ một nhận định chắc chắn sẽ sớm xảy ra trong nhận thức xã hội: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: understood quá khứ đơn, understands hiện tại ngôi số ít sai chủ ngữ số nhiều 'schools', understanding thiếu 'be' liên kết."
+                    },
+                    {
+                        id: "ex1_q57",
+                        q: "57. Where _______ when you finish university and start your independent life?",
+                        options: ["will you live", "you will live", "do you live", "are you live"],
+                        answer: "will you live",
+                        exp: "1. Dịch nghĩa: Cậu dự định sẽ sinh sống ở đâu sau khi tốt nghiệp đại học và bắt đầu hành trình tự lập cuộc sống của mình?<br>2. Phân tích cấu trúc câu hỏi tương lai: Hỏi về kế hoạch định cư sau khi kết thúc chặng đường sinh viên ở tương lai 'when you finish university'.<br>3. Câu hỏi nghi vấn WH- tương lai đơn bắt buộc đảo trợ động từ lên trước chủ ngữ: <span class='exp-word'>Where + will + S + V-inf...?</span>.<br>4. Loại trừ: you will live sai trật tự câu hỏi, do you live chỉ hiện tại đơn không phù hợp tương lai, are you live sai cấu trúc ngữ pháp hệ từ."
+                    },
+                    {
+                        id: "ex1_q58",
+                        q: "58. Starting tomorrow, I _______ stop eating sugar to improve my skin and energy levels.",
+                        options: ["am", "do", "will", "have"],
+                        answer: "will",
+                        exp: "1. Dịch nghĩa: Bắt đầu từ ngày mai, tôi sẽ quyết tâm cai đường ngọt hoàn toàn để cải thiện làn da và nâng cao thể lực dồi dào.<br>2. Phân tích ngữ pháp: Hành động quyết tâm tự hứa hẹn có mốc thời gian bắt đầu tương lai <span class='exp-word'>Starting tomorrow</span> (Bắt đầu từ ngày mai).<br>3. Trợ động từ tương lai đơn thể hiện ý chí quyết tâm cao độ cải thiện sức khỏe: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: am/do/have không đi kèm bổ nghĩa trực tiếp cho động từ nguyên thể 'stop' trong trường hợp này."
+                    },
+                    {
+                        id: "ex1_q59",
+                        q: "59. In just two days, our company _______ a new wellness program for all employees.",
+                        options: ["will launch", "launching", "launches", "launched"],
+                        answer: "will launch",
+                        exp: "1. Dịch nghĩa: Chỉ trong vòng hai ngày tới thôi, công ty của chúng tôi sẽ chính thức phát động chương trình chăm sóc sức khỏe toàn diện cho tất cả nhân viên.<br>2. Phân tích ngữ pháp: Dấu hiệu thời gian đếm ngược tương lai cực gần <span class='exp-word'>In just two days</span> (Chỉ trong hai ngày nữa).<br>3. Áp dụng cấu trúc tương lai đơn chỉ sự kiện công ty sắp sửa triển khai công bố chính thức: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: launched quá khứ đơn, launches hiện tại đơn chỉ thói quen định kỳ, launching thiếu 'be' liên kết."
+                    },
+                    {
+                        id: "ex1_q60",
+                        q: "60. _______ your teenage children want to learn about nutrition when they go to college?",
+                        options: ["Do", "Are", "Will", "Is"],
+                        answer: "Will",
+                        exp: "1. Dịch nghĩa: Liệu con cái tuổi thiếu niên của cậu có muốn tìm hiểu về dinh dưỡng học khi chúng bước chân vào giảng đường đại học không?<br>2. Phân tích ngữ pháp: Dự báo tâm lý mong muốn ở tương lai đi kèm mệnh đề thời gian tương lai <span class='exp-word'>when they go to college</span>.<br>3. Động từ khuyết thiếu tương lai đơn dùng trong nghi vấn phỏng đoán: <span class='exp-word'>Will + S + V-inf...?</span> (Will... want to learn).<br>4. Loại trừ: Do chỉ dùng ở hiện tại đơn thuần không mang tính định hướng tương lai, Are/Is không đi với động từ nguyên thể 'want'."
+                    },
+                    {
+                        id: "ex1_q61",
+                        q: "61. I don't think my grandfather _______ his coffee habit even though it's not healthy.",
+                        options: ["will change", "changing", "changes", "changed"],
+                        answer: "will change",
+                        exp: "1. Dịch nghĩa: Tôi không nghĩ rằng ông nội tôi sẽ chịu thay đổi thói quen uống cà phê đậm đặc của mình mặc dù nó không tốt lắm cho tim mạch.<br>2. Phân tích ngữ pháp: Nhận định mang tính phỏng đoán cá nhân tương lai đi với cụm từ phủ định suy nghĩ <span class='exp-word'>I don't think...</span> (Tôi không tin rằng...).<br>3. Đưa ra dự đoán hành vi của người khác trong tương lai: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: changes hiện tại đơn, changed quá khứ đơn, changing thiếu 'be' liên kết."
+                    },
+                    {
+                        id: "ex1_q62",
+                        q: "62. After work today, I _______ some organic fruits from the new health food store.",
+                        options: ["will buy", "buying", "buys", "bought"],
+                        answer: "will buy",
+                        exp: "1. Dịch nghĩa: Sau giờ làm việc hôm nay, tôi sẽ ghé mua một ít trái cây hữu cơ sạch từ cửa hàng thực phẩm dinh dưỡng mới mở.<br>2. Phân tích ngữ pháp: Hành động dự kiến sẽ làm ngay sau thời điểm nói trong ngày <span class='exp-word'>After work today</span> (Sau ca làm hôm nay).<br>3. Áp dụng thì tương lai đơn giản chỉ kế hoạch cá nhân tự phát: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: bought quá khứ đơn chỉ dùng khi hành động mua đã kết thúc hoàn tất, buys hiện tại ngôi số ít sai chủ ngữ 'I'."
+                    },
+                    {
+                        id: "ex1_q63",
+                        q: "63. My sister says she _______ probably become a pescatarian when she moves out next year.",
+                        options: ["is", "will", "do", "are"],
+                        answer: "will",
+                        exp: "1. Dịch nghĩa: Chị gái tôi chia sẻ rằng chị ấy chắc chắn sẽ chuyển sang chế độ ăn chay bán phần (chỉ ăn cá) khi dọn ra sống tự lập vào năm tới.<br>2. Phân tích ngữ pháp: Dự báo xu hướng ăn kiêng tương lai kết hợp trạng từ phỏng đoán <span class='exp-word'>probably</span> và mệnh đề thời gian tương lai 'when she moves out next year'.<br>3. Cấu trúc dự đoán tương lai có khả năng cao xảy ra: <span class='exp-word'>S + will + probably + V-inf</span> (will probably become).<br>4. Loại trừ: is/are không kết hợp đi kèm động từ hành động nguyên thể 'become', do không chỉ tương lai."
+                    },
+                    {
+                        id: "ex1_q64",
+                        q: "64. One day in the future, people _______ to 150 years old with advanced medical technology.",
+                        options: ["will live", "living", "lives", "lived"],
+                        answer: "will live",
+                        exp: "1. Dịch nghĩa: Một ngày nào đó trong tương lai xa, nhân loại sẽ có thể sống thọ tới 150 tuổi nhờ sự phát triển vượt bậc của y học hiện đại.<br>2. Phân tích ngữ pháp: Trạng ngữ chỉ thời gian tương lai viễn tưởng cực kỳ rõ nét <span class='exp-word'>One day in the future</span> (Một ngày nào đó trong tương lai).<br>3. Đưa ra dự đoán viễn tưởng khoa học công nghệ xa xôi: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: lives hiện tại đơn chỉ quy luật thực tế hiện hành, lived quá khứ đơn chỉ thời xưa cổ, living thiếu trợ động từ tobe."
+                    },
+                    {
+                        id: "ex1_q65",
+                        q: "65. I'm absolutely sure you _______ much better if you drink 2 liters of water daily.",
+                        options: ["feeling", "will feel", "feels", "felt"],
+                        answer: "will feel",
+                        exp: "1. Dịch nghĩa: Tớ cam đoan chắc chắn rằng cơ thể cậu sẽ cảm thấy khoan khoái năng động hơn rất nhiều nếu cậu uống đủ 2 lít nước sạch mỗi ngày.<br>2. Phân tích ngữ pháp: Câu điều kiện loại 1 (Conditional Type 1) diễn tả kết quả thực tế có thể xảy ra ở tương lai của thói quen tốt.<br>3. Mệnh đề chính kết quả của điều kiện loại 1 bắt buộc chia tương lai đơn: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: feels hiện tại đơn không nhấn mạnh tính kết quả tương lai chắc chắn, felt chia quá khứ đơn sai cấu trúc ngữ pháp."
+                    },
+                    {
+                        id: "ex1_q66",
+                        q: "66. If you start eating junk food every day from tomorrow, you _______ gain weight quickly.",
+                        options: ["will", "would", "do", "are"],
+                        answer: "will",
+                        exp: "1. Dịch nghĩa: Nếu cậu bắt đầu lạm dụng đồ ăn vặt nhiều dầu mỡ hằng ngày kể từ ngày mai, cậu chắc chắn sẽ tăng cân mất kiểm soát cực kỳ nhanh chóng.<br>2. Phân tích ngữ pháp: Câu điều kiện loại 1 (Conditional Type 1) cảnh báo hệ quả xấu của thói quen ăn uống tai hại.<br>3. Mệnh đề chính kết quả của điều kiện loại 1: <span class='exp-word'>S + will + V-inf</span> (you will gain).<br>4. Loại trừ: would dùng cho điều kiện loại 2 giả định phi thực tế, do/are không tạo cấu trúc tương lai khuyết thiếu bổ nghĩa động từ nguyên thể 'gain'."
+                    },
+                    {
+                        id: "ex1_q67",
+                        q: "67. If my sister _______ doing yoga next week, she will feel more relaxed after work.",
+                        options: ["start", "starts", "will start", "started"],
+                        answer: "starts",
+                        exp: "1. Dịch nghĩa: Nếu chị gái tôi chính thức khởi động tập yoga vào tuần tới, chị ấy sẽ cảm nhận được sự thư thái sâu sắc giảm căng thẳng sau giờ làm việc.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện (If-clause) của câu điều kiện loại 1.<br>3. Theo quy tắc ngữ pháp tiếng Anh, động từ trong mệnh đề điều kiện If của điều kiện loại 1 KHÔNG chia tương lai đơn, mà chia ở hiện tại đơn: <span class='exp-word'>If + S + V(s/es)</span> (My sister starts - số ít).<br>4. Loại trừ: will start hoàn toàn vi phạm quy tắc chia thì mệnh đề If, start sai ngôi số ít chủ ngữ chị gái, started chia quá khứ thuộc điều kiện loại 2."
+                    },
+                    {
+                        id: "ex1_q68",
+                        q: "68. You will sleep better next month if you _______ using your phone before bed starting tonight.",
+                        options: ["stops", "stopping", "stop", "stopped"],
+                        answer: "stop",
+                        exp: "1. Dịch nghĩa: Con chắc chắn sẽ ngủ ngon giấc hơn vào tháng tới nếu con biết dừng thói quen sử dụng điện thoại trước giờ đi ngủ kể từ đêm nay.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If trong cấu trúc điều kiện loại 1 của chủ ngữ ngôi thứ hai 'you'.<br>3. Động từ trong mệnh đề If chia hiện tại đơn giản với chủ ngữ số nhiều/ngôi thứ hai là động từ nguyên mẫu không thêm đuôi: <span class='exp-word'>If + you + V-inf</span> (you stop).<br>4. Loại trừ: stops sai ngôi số ít, stopped quá khứ đơn, stopping danh động từ sai ngữ pháp."
+                    },
+                    {
+                        id: "ex1_q69",
+                        q: "69. If we begin walking to work from next Monday, we _______ healthier and save money too.",
+                        options: ["are", "will be", "would be", "were"],
+                        answer: "will be",
+                        exp: "1. Dịch nghĩa: Nếu chúng ta bắt đầu duy trì việc đi bộ đi làm kể từ thứ Hai tới, chúng ta sẽ vừa khỏe khoắn hơn lại vừa tiết kiệm được khoản tiền kha khá.<br>2. Phân tích ngữ pháp: Mệnh đề chính chỉ kết quả tương lai của câu điều kiện loại 1.<br>3. Cấu trúc mệnh đề chính kết quả của điều kiện loại 1: <span class='exp-word'>S + will + be + Adjective</span> (we will be healthier).<br>4. Loại trừ: are hiện tại đơn không nhấn mạnh tính hệ quả tương lai, would be/were thuộc điều kiện loại 2 giả định không thực tế."
+                    },
+                    {
+                        id: "ex1_q70",
+                        q: "70. If my father _______ smoking this month, his health will improve by next year.",
+                        options: ["quit", "will quit", "quits", "quitted"],
+                        answer: "quits",
+                        exp: "1. Dịch nghĩa: Nếu cha tôi quyết tâm cai thuốc lá thành công ngay trong tháng này, nền tảng sức khỏe của ông sẽ phục hồi đáng kể vào năm tới.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của câu điều kiện loại 1 với chủ ngữ ngôi thứ ba số ít 'my father'.<br>3. Động từ trong mệnh đề If chia hiện tại đơn ngôi thứ ba số ít thêm đuôi -s: <span class='exp-word'>If + S(số ít) + V-s/es</span> (My father quits).<br>4. Loại trừ: will quit sai quy tắc chia thì mệnh đề If, quit sai ngôi, quitted quá khứ đơn sai điều kiện loại 1."
+                    },
+                    {
+                        id: "ex1_q71",
+                        q: "71. She won't reach her weight goal by summer if she _______ stop eating chocolate now.",
+                        options: ["don't", "doesn't", "won't", "didn't"],
+                        answer: "doesn't",
+                        exp: "1. Dịch nghĩa: Cô ấy sẽ không bao giờ chạm tới cột mốc cân nặng mơ ước trước mùa hè nếu cô ấy không chịu dừng ăn sô-cô-la ngọt ngay lúc này.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện phủ định (Negative If-clause) của câu điều kiện loại 1 với chủ ngữ ngôi thứ ba số ít 'she'.<br>3. Sử dụng trợ động từ phủ định ở hiện tại đơn ngôi số ít để hỗ trợ động từ hành động nguyên thể 'stop': <span class='exp-word'>If + she + doesn't + V-inf</span>.<br>4. Loại trừ: don't sai ngôi số ít, won't sai quy tắc tương lai trong mệnh đề If, didn't chia quá khứ sai điều kiện loại 1."
+                    },
+                    {
+                        id: "ex1_q72",
+                        q: "72. If you start drinking more water from today, your skin _______ look better in two weeks.",
+                        options: ["will", "would", "is", "does"],
+                        answer: "will",
+                        exp: "1. Dịch nghĩa: Nếu cậu duy trì thói quen uống nhiều nước sạch hơn kể từ hôm nay, làn da cậu chắc chắn trông sẽ đẹp hơn chỉ sau hai tuần.<br>2. Phân tích ngữ pháp: Mệnh đề chính kết quả tương lai của câu điều kiện loại 1.<br>3. Công thức mệnh đề kết quả của điều kiện loại 1 bổ trợ động từ nguyên mẫu 'look': <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: would thuộc điều kiện loại 2, is/does hiện tại đơn không nhấn mạnh tính hệ quả biến đổi tương lai rõ nét."
+                    },
+                    {
+                        id: "ex1_q73",
+                        q: "73. If they _______ to bed early tonight, they will feel energetic for tomorrow's marathon.",
+                        options: ["go", "goes", "will go", "went"],
+                        answer: "go",
+                        exp: "1. Dịch nghĩa: Nếu họ đi ngủ sớm vào tối nay, họ sẽ tràn đầy năng lượng sẵn sàng chinh phục giải chạy marathon vào ngày mai.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If trong điều kiện loại 1 của chủ ngữ số nhiều 'they'.<br>3. Động từ chia hiện tại đơn nguyên mẫu với chủ ngữ số nhiều: <span class='exp-word'>If + they + V-inf</span> (they go).<br>4. Loại trừ: goes sai ngôi, will go vi phạm quy tắc chia tương lai mệnh đề If, went quá khứ đơn sai điều kiện loại 1."
+                    },
+                    {
+                        id: "ex1_q74",
+                        q: "74. You will feel stressed next week if you _______ take a break this weekend.",
+                        options: ["doesn't", "don't", "won't", "didn't"],
+                        answer: "don't",
+                        exp: "1. Dịch nghĩa: Cậu chắc chắn sẽ cảm thấy vô cùng căng thẳng vào tuần tới nếu cậu không chịu nghỉ ngơi giải trí vào cuối tuần này.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If phủ định của điều kiện loại 1 với chủ ngữ ngôi thứ hai 'you'.<br>3. Trợ động từ phủ định hiện tại đơn đi với chủ ngữ ngôi thứ hai là 'don't': <span class='exp-word'>If + you + don't + V-inf</span>.<br>4. Loại trừ: doesn't sai ngôi, won't sai quy tắc, didn't quá khứ đơn."
+                    },
+                    {
+                        id: "ex1_q75",
+                        q: "75. If I _______ eating a healthy breakfast starting tomorrow, I will have more energy next month.",
+                        options: ["begin", "begins", "will begin", "began"],
+                        answer: "begin",
+                        exp: "1. Dịch nghĩa: Nếu tôi bắt đầu thói quen ăn bữa sáng dinh dưỡng đầy đủ kể từ ngày mai, tôi sẽ có năng lượng tràn đầy vào tháng tới.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của điều kiện loại 1 với chủ ngữ ngôi thứ nhất số ít 'I'.<br>3. Động từ chia hiện tại đơn dạng nguyên thể với chủ ngữ ngôi thứ nhất: <span class='exp-word'>If + I + V-inf</span> (I begin).<br>4. Loại trừ: begins sai ngôi số ít, will begin vi phạm quy tắc tương lai mệnh đề If, began quá khứ đơn sai điều kiện loại 1."
+                    }
+                ]
+            },
+            "ex1_p4": {
+                title: "Ex 1: Grammar & Vocabulary (Q76-95)",
+                desc: "Hoàn thiện các câu trắc nghiệm cuối cùng từ câu 76 tới câu 95 của Exercise 1.",
+                questions: [
+                    {
+                        id: "ex1_q76",
+                        q: "76. My brother will catch a cold this winter if he _______ buy warm clothes now.",
+                        options: ["don't", "doesn't", "won't", "didn't"],
+                        answer: "doesn't",
+                        exp: "1. Dịch nghĩa: Em trai tôi sẽ dễ bị cảm lạnh vào mùa đông này nếu nó không chịu sắm quần áo ấm ngay lúc này.<br>2. Phân tích ngữ pháp: Mệnh đề If phủ định của điều kiện loại 1 với chủ ngữ ngôi thứ ba số ít 'he' (my brother).<br>3. Sử dụng trợ động từ phủ định hiện tại đơn phù hợp với chủ ngữ số ít: <span class='exp-word'>If + he + doesn't + V-inf</span>.<br>4. Loại trừ: don't sai ngôi số ít, won't sai quy tắc mệnh đề If, didn't chia quá khứ sai điều kiện loại 1."
+                    },
+                    {
+                        id: "ex1_q77",
+                        q: "77. If we join the gym this weekend, we _______ meet new workout partners next week.",
+                        options: ["will", "would", "are", "were"],
+                        answer: "will",
+                        exp: "1. Dịch nghĩa: Nếu chúng ta đăng ký phòng tập thể hình vào cuối tuần này, chúng ta sẽ gặp gỡ những người bạn đồng hành tập luyện mới vào tuần tới.<br>2. Phân tích ngữ pháp: Mệnh đề chính kết quả của điều kiện loại 1 bổ nghĩa cho động từ nguyên mẫu 'meet'.<br>3. Áp dụng thì tương lai đơn mệnh đề chính: <span class='exp-word'>S + will + V-inf</span>.<br>4. Loại trừ: would/were thuộc điều kiện loại 2 giả định, are hiện tại đơn không nhấn mạnh tính kết quả tương lai rõ rệt."
+                    },
+                    {
+                        id: "ex1_q78",
+                        q: "78. _______ you call the doctor tomorrow if your headache continues tonight?",
+                        options: ["Do", "Are", "Will", "Does"],
+                        answer: "Will",
+                        exp: "1. Dịch nghĩa: Liệu cậu có gọi cho bác sĩ vào ngày mai nếu cơn đau đầu dữ dội vẫn tiếp tục kéo dài vào đêm nay không?<br>2. Phân tích ngữ pháp: Câu hỏi nghi vấn ở mệnh đề chính của điều kiện loại 1 hướng tới tương lai 'tomorrow'.<br>3. Cấu trúc câu hỏi mệnh đề chính điều kiện loại 1: <span class='exp-word'>Will + S + V-inf...?</span>.<br>4. Loại trừ: Do/Does không tương thích thời gian ngày mai tương lai, Are không đi cùng động từ nguyên mẫu hành động 'call'."
+                    },
+                    {
+                        id: "ex1_q79",
+                        q: "79. If she starts practicing meditation from today, she _______ become calmer in a month.",
+                        options: ["will", "would", "is", "does"],
+                        answer: "will",
+                        exp: "1. Dịch nghĩa: Nếu cô ấy chăm chỉ thực hành thiền định đều đặn bắt đầu từ hôm nay, cô ấy chắc chắn sẽ trở nên bình tĩnh thư thái tâm hồn hơn sau một tháng.<br>2. Phân tích ngữ pháp: Mệnh đề chính chỉ hệ quả tích cực tương lai của câu điều kiện loại 1.<br>3. Cấu trúc kết quả điều kiện loại 1: <span class='exp-word'>S + will + V-inf</span> (she will become calmer).<br>4. Loại trừ: would thuộc điều kiện loại 2 giả định phi thực tế, is/does chia hiện tại đơn không diễn đạt được tính kết quả biến đổi tương lai rõ rệt."
+                    },
+                    {
+                        id: "ex1_q80",
+                        q: "80. You won't pass your fitness test next month if you _______ start training now.",
+                        options: ["don't", "doesn't", "won't", "didn't"],
+                        answer: "don't",
+                        exp: "1. Dịch nghĩa: Cậu chắc chắn sẽ không thể vượt qua bài kiểm tra thể lực vào tháng tới nếu cậu không chịu bắt đầu tập luyện nghiêm túc ngay từ lúc này.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If phủ định của điều kiện loại 1 với chủ ngữ ngôi thứ hai số nhiều 'you'.<br>3. Sử dụng trợ động từ phủ định hiện tại đơn tương thích chủ ngữ 'you': <span class='exp-word'>If + you + don't + V-inf</span>.<br>4. Loại trừ: doesn't sai ngôi số ít, won't sai quy tắc mệnh đề If, didn't chia quá khứ sai điều kiện loại 1."
+                    },
+                    {
+                        id: "ex1_q81",
+                        q: "81. If it _______ heavily tomorrow morning, we will cancel our outdoor yoga class.",
+                        options: ["rain", "rains", "will rain", "rained"],
+                        answer: "rains",
+                        exp: "1. Dịch nghĩa: Nếu ngày mai trời đổ mưa nặng hạt vào buổi sáng, chúng tôi buộc phải hủy bỏ lớp học yoga ngoài trời thảnh thơi của mình.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của điều kiện loại 1 với chủ ngữ ngôi thứ ba số ít chỉ thời tiết tự nhiên 'it'.<br>3. Động từ chia hiện tại đơn thêm đuôi -s/es tương thích ngôi số ít: <span class='exp-word'>If + it + V-s/es</span> (If it rains).<br>4. Loại trừ: will rain hoàn toàn vi phạm quy tắc thì trong mệnh đề If, rain sai ngôi, rained chia quá khứ sai điều kiện loại 1."
+                    },
+                    {
+                        id: "ex1_q82",
+                        q: "82. They will save money next year if they _______ cooking at home from next week.",
+                        options: ["starts", "start", "will start", "started"],
+                        answer: "start",
+                        exp: "1. Dịch nghĩa: Họ sẽ tiết kiệm được khoản ngân sách khá lớn vào năm tới nếu họ chủ động bắt đầu tự nấu cơm tại nhà kể từ tuần sau.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của điều kiện loại 1 với chủ ngữ ngôi thứ ba số nhiều 'they'.<br>3. Động từ hiện tại đơn dạng nguyên thể không chia phù hợp chủ ngữ số nhiều: <span class='exp-word'>If + they + V-inf</span> (they start).<br>4. Loại trừ: starts sai ngôi số ít, will start sai quy tắc tương lai mệnh đề If, started quá khứ đơn sai điều kiện loại 1."
+                    },
+                    {
+                        id: "ex1_q83",
+                        q: "83. If you _______ take vitamins starting today, you will get sick during flu season.",
+                        options: ["don't", "doesn't", "won't", "didn't"],
+                        answer: "don't",
+                        exp: "1. Dịch nghĩa: Nếu cậu không chịu uống bổ sung vitamin đều đặn bắt đầu từ hôm nay, cậu sẽ rất dễ bị nhiễm bệnh trong suốt mùa dịch cúm sắp tới.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If phủ định của điều kiện loại 1 với chủ ngữ ngôi thứ hai 'you'.<br>3. Trợ động từ phủ định hiện tại đơn đi với chủ ngữ ngôi thứ hai là 'don't': <span class='exp-word'>If + you + don't + V-inf</span>.<br>4. Loại trừ: doesn't sai ngôi, won't sai quy tắc, didn't chia quá khứ."
+                    },
+                    {
+                        id: "ex1_q84",
+                        q: "84. She will be happier next month if she _______ more time for hobbies this week.",
+                        options: ["make", "making", "makes", "will make"],
+                        answer: "makes",
+                        exp: "1. Dịch nghĩa: Cô ấy chắc chắn sẽ cảm thấy yêu đời hạnh phúc hơn vào tháng tới nếu cô ấy biết dành nhiều thời gian hơn cho các sở thích lành mạnh cá nhân vào tuần này.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của điều kiện loại 1 với chủ ngữ ngôi thứ ba số ít 'she'.<br>3. Động từ chia hiện tại đơn ngôi thứ ba số ít thêm đuôi -s/es: <span class='exp-word'>If + she + V-s/es</span> (makes).<br>4. Loại trừ: make sai ngôi, will make vi phạm quy tắc chia thì mệnh đề If, making thiếu hệ từ."
+                    },
+                    {
+                        id: "ex1_q85",
+                        q: "85. If we _______ organic food from tomorrow, we will feel healthier by next month.",
+                        options: ["buy", "buys", "will buy", "bought"],
+                        answer: "buy",
+                        exp: "1. Dịch nghĩa: Nếu chúng ta bắt đầu đầu tư mua sắm thực phẩm hữu cơ sạch từ ngày mai, cơ thể chúng ta sẽ cải thiện khỏe khoắn hơn vào tháng tới.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của điều kiện loại 1 với chủ ngữ ngôi thứ nhất số nhiều 'we'.<br>3. Động từ chia hiện tại đơn dạng nguyên thể tương thích chủ ngữ số nhiều: <span class='exp-word'>If + we + V-inf</span> (we buy).<br>4. Loại trừ: buys sai ngôi số ít, will buy vi phạm quy tắc chia tương lai mệnh đề If, bought chia quá khứ đơn."
+                    },
+                    {
+                        id: "ex1_q86",
+                        q: "86. You will be exhausted for tomorrow's exam if you _______ sleep early tonight.",
+                        options: ["don't", "doesn't", "won't", "didn't"],
+                        answer: "don't",
+                        exp: "1. Dịch nghĩa: Cậu chắc chắn sẽ kiệt sức kiệt quệ tinh thần trong phòng thi vào ngày mai nếu cậu không chịu đi ngủ sớm vào tối hôm nay.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If phủ định của điều kiện loại 1 với chủ ngữ ngôi thứ hai 'you'.<br>3. Trợ động từ phủ định ở hiện tại đơn dành cho chủ ngữ 'you' là 'don't': <span class='exp-word'>If + you + don't + V-inf</span>.<br>4. Loại trừ: doesn't sai ngôi số ít, won't sai quy tắc, didn't chia quá khứ."
+                    },
+                    {
+                        id: "ex1_q87",
+                        q: "87. If he _______ the meditation course next week, his stress will decrease within a month.",
+                        options: ["join", "joins", "will join", "joined"],
+                        answer: "joins",
+                        exp: "1. Dịch nghĩa: Nếu anh ấy chịu đăng ký tham gia khóa học thiền định tĩnh tâm vào tuần tới, áp lực căng thẳng sẽ tiêu tan nhanh chóng trong vòng một tháng.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của điều kiện loại 1 với chủ ngữ ngôi thứ ba số ít 'he'.<br>3. Động từ chia hiện tại đơn thêm đuôi -s/es tương thích ngôi số ít: <span class='exp-word'>If + he + V-s/es</span> (he joins).<br>4. Loại trừ: join sai ngôi, will join vi phạm quy tắc tương lai mệnh đề If, joined quá khứ đơn."
+                    },
+                    {
+                        id: "ex1_q88",
+                        q: "88. We won't enjoy our vacation next month if we _______ overtime this week.",
+                        options: ["works", "working", "work", "worked"],
+                        answer: "work",
+                        exp: "1. Dịch nghĩa: Chúng ta sẽ không thể tận hưởng trọn vẹn kỳ nghỉ dưỡng vào tháng tới nếu chúng ta vẫn cắm đầu làm việc tăng ca kiệt sức suốt tuần này.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của điều kiện loại 1 với chủ ngữ số nhiều 'we'.<br>3. Động từ hiện tại đơn dạng nguyên thể tương thích chủ ngữ số nhiều: <span class='exp-word'>If + we + V-inf</span> (we work).<br>4. Loại trừ: works sai ngôi số ít, worked quá khứ đơn, working thiếu tobe."
+                    },
+                    {
+                        id: "ex1_q89",
+                        q: "89. If you start a morning routine tomorrow, your days _______ be more productive next week.",
+                        options: ["is", "will", "would", "were"],
+                        answer: "will",
+                        exp: "1. Dịch nghĩa: Nếu cậu chịu rèn luyện xây dựng nếp sống thói quen buổi sáng bắt đầu từ ngày mai, mỗi ngày của cậu sẽ ngập tràn năng suất hiệu quả vào tuần tới.<br>2. Phân tích ngữ pháp: Mệnh đề chính kết quả tương lai của câu điều kiện loại 1 bổ nghĩa cho động từ nguyên mẫu 'be'.<br>3. Sử dụng trợ động từ tương lai đơn: <span class='exp-word'>S + will + V-inf</span> (your days will be).<br>4. Loại trừ: is hiện tại đơn, would/were thuộc điều kiện loại 2 giả định phi thực tế."
+                    },
+                    {
+                        id: "ex1_q90",
+                        q: "90. _______ she join our fitness challenge if we ask her at lunch today?",
+                        options: ["Do", "Does", "Will", "Did"],
+                        answer: "Will",
+                        exp: "1. Dịch nghĩa: Liệu cô ấy có hào hứng tham gia thử thách rèn luyện thể lực cùng chúng ta nếu chúng ta rủ cô ấy vào bữa trưa hôm nay không?<br>2. Phân tích ngữ pháp: Câu hỏi nghi vấn ở mệnh đề chính của câu điều kiện loại 1.<br>3. Cấu trúc nghi vấn tương lai đơn: <span class='exp-word'>Will + S + V-inf...?</span> (Will she join).<br>4. Loại trừ: Do/Does không chỉ tương lai phỏng đoán kết quả, Did chia quá khứ sai lệch logic câu hỏi hiện thời."
+                    },
+                    {
+                        id: "ex1_q91",
+                        q: "91. If they _______ eating fast food from today, their cholesterol levels will decrease by next month.",
+                        options: ["stops", "stop", "will stop", "stopped"],
+                        answer: "stop",
+                        exp: "1. Dịch nghĩa: Nếu họ kiên quyết dừng ăn thức ăn nhanh nhiều dầu mỡ kể từ ngày hôm nay, chỉ số mỡ máu cholesterol của họ sẽ giảm đáng kể vào tháng tới.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If trong điều kiện loại 1 của chủ ngữ số nhiều 'they'.<br>3. Động từ hiện tại đơn dạng nguyên mẫu không chia tương thích chủ ngữ số nhiều: <span class='exp-word'>If + they + V-inf</span> (they stop).<br>4. Loại trừ: stops sai ngôi số ít, will stop vi phạm quy tắc chia tương lai mệnh đề If, stopped chia quá khứ."
+                    },
+                    {
+                        id: "ex1_q92",
+                        q: "92. You will see muscle growth in three months if you _______ lifting weights next week.",
+                        options: ["start", "starts", "will start", "started"],
+                        answer: "start",
+                        exp: "1. Dịch nghĩa: Cậu chắc chắn sẽ nhận thấy sự phát triển cơ bắp rõ rệt sau ba tháng nữa nếu cậu chăm chỉ bắt đầu nâng tạ rèn luyện vào tuần tới.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của điều kiện loại 1 với chủ ngữ ngôi thứ hai 'you'.<br>3. Động từ hiện tại đơn chia dạng nguyên thể tương thích ngôi thứ hai: <span class='exp-word'>If + you + V-inf</span> (you start).<br>4. Loại trừ: starts sai ngôi số ít, will start vi phạm quy tắc chia tương lai mệnh đề If, started quá khứ đơn."
+                    },
+                    {
+                        id: "ex1_q93",
+                        q: "93. If I _______ adding vegetables to my lunch from tomorrow, I will lose weight by summer.",
+                        options: ["beginning", "begins", "begin", "will begin"],
+                        answer: "begin",
+                        exp: "1. Dịch nghĩa: Nếu tôi bắt đầu bổ sung thêm nhiều rau xanh vào khẩu phần ăn trưa từ ngày mai, tôi sẽ giảm cân thành công đón mùa hè tự tin.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của điều kiện loại 1 với chủ ngữ ngôi thứ nhất số ít 'I'.<br>3. Động từ hiện tại đơn dạng nguyên thể tương thích chủ ngữ ngôi thứ nhất: <span class='exp-word'>If + I + V-inf</span> (I begin).<br>4. Loại trừ: begins sai ngôi số ít, will begin vi phạm quy tắc tương lai mệnh đề If, beginning thiếu hệ từ."
+                    },
+                    {
+                        id: "ex1_q94",
+                        q: "94. He won't achieve his goals this year if he _______ make a plan today.",
+                        options: ["don't", "doesn't", "won't", "didn't"],
+                        answer: "doesn't",
+                        exp: "1. Dịch nghĩa: Anh ấy chắc chắn sẽ không thể hoàn thành mục tiêu đề ra trong năm nay nếu anh ấy không chịu xây dựng kế hoạch hành động cụ thể ngay hôm nay.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If phủ định của điều kiện loại 1 với chủ ngữ số ít ngôi thứ ba 'he'.<br>3. Sử dụng trợ động từ phủ định ngôi số ít hiện tại đơn: <span class='exp-word'>If + he + doesn't + V-inf</span>.<br>4. Loại trừ: don't sai ngôi số ít, won't sai quy tắc, didn't chia quá khứ."
+                    },
+                    {
+                        id: "ex1_q95",
+                        q: "95. If we _______ gratitude for small things starting now, we will be happier next year.",
+                        options: ["practicing", "practices", "practice", "practiced"],
+                        answer: "practice",
+                        exp: "1. Dịch nghĩa: Nếu chúng ta bắt đầu nuôi dưỡng thực hành lòng biết ơn đối với những điều bé nhỏ dung dị ngay từ lúc này, chúng ta chắc chắn sẽ hạnh phúc tràn đầy hơn vào năm tới.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của điều kiện loại 1 với chủ ngữ ngôi thứ nhất số nhiều 'we'.<br>3. Động từ hiện tại đơn dạng nguyên mẫu tương thích chủ ngữ số nhiều: <span class='exp-word'>If + we + V-inf</span> (we practice).<br>4. Loại trừ: practices sai ngôi số ít, practiced quá khứ đơn, practicing thiếu tobe."
+                    }
+                ]
+            },
+            "ex2": {
+                title: "Ex 2: Future Simple Verb Form (Q1-10)",
+                desc: "Chọn cấu trúc thì tương lai đơn giản hoàn thiện ngữ pháp chuẩn chỉnh nhất cho từng câu văn.",
+                questions: [
+                    {
+                        id: "ex2_q1",
+                        q: "1. Tomorrow morning, I _______ (wake up) at 6 AM to do yoga in the park.",
+                        options: ["wake up", "will wake up", "woke up", "waking up"],
+                        answer: "will wake up",
+                        exp: "1. Dịch nghĩa: Sáng ngày mai, tôi sẽ thức dậy lúc 6 giờ sáng để thực hành yoga thảnh thơi tại công viên xanh.<br>2. Phân tích ngữ pháp tương lai: Xuất hiện trạng từ chỉ thời gian sáng ngày mai <span class='exp-word'>Tomorrow morning</span>.<br>3. Động từ trong ngoặc chia tương lai đơn giản: <span class='exp-word'>S + will + V-inf</span> (will wake up).<br>4. Loại trừ: wake up hiện tại đơn, woke up quá khứ đơn, waking up thiếu hệ từ."
+                    },
+                    {
+                        id: "ex2_q2",
+                        q: "2. My sister _______ (not/eat) fast food next month because she wants to be healthier.",
+                        options: ["won't eat", "doesn't eat", "isn't eating", "didn't eat"],
+                        answer: "won't eat",
+                        exp: "1. Dịch nghĩa: Chị gái tôi sẽ tuyệt đối không dùng thức ăn nhanh vào tháng tới vì chị ấy muốn cơ thể trở nên khỏe mạnh hơn.<br>2. Phân tích ngữ pháp: Xuất hiện trạng từ phủ định của mốc thời gian tương lai tháng sau <span class='exp-word'>next month</span>.<br>3. Động từ khuyết thiếu tương lai phủ định chỉ cam kết từ bỏ: <span class='exp-word'>S + won't (will not) + V-inf</span>.<br>4. Loại trừ: doesn't eat hiện tại đơn, isn't eating tiếp diễn, didn't eat quá khứ đơn."
+                    },
+                    {
+                        id: "ex2_q3",
+                        q: "3. We _______ (join) a gym next week to exercise together every evening.",
+                        options: ["join", "will join", "joined", "joining"],
+                        answer: "will join",
+                        exp: "1. Dịch nghĩa: Chúng tôi sẽ đăng ký tham gia phòng tập thể thao vào tuần tới để cùng tập luyện vào mỗi buổi tối ấm áp.<br>2. Phân tích ngữ pháp: Dấu hiệu thời gian tuần tới <span class='exp-word'>next week</span>.<br>3. Chia tương lai đơn giản chỉ kế hoạch sẽ thực hiện trong tương lai gần: <span class='exp-word'>S + will + V-inf</span> (will join).<br>4. Loại trừ: join hiện tại đơn chỉ thói quen cũ, joined quá khứ đơn, joining thiếu hệ từ."
+                    },
+                    {
+                        id: "ex2_q4",
+                        q: "4. He _______ (go) to bed earlier tonight because he has an important meeting tomorrow.",
+                        options: ["goes", "will go", "went", "going"],
+                        answer: "will go",
+                        exp: "1. Dịch nghĩa: Anh ấy sẽ đi ngủ sớm hơn vào tối hôm nay vì anh ấy có cuộc họp vô cùng quan trọng vào ngày mai.<br>2. Phân tích ngữ pháp: Đưa ra quyết định dựa trên lý do thực tế cuộc họp ngày mai, mốc thời gian tối nay 'tonight'.<br>3. Chia động từ tương lai đơn diễn đạt quyết định thói quen tốt ngắn hạn: <span class='exp-word'>S + will + V-inf</span> (will go).<br>4. Loại trừ: went quá khứ đơn hoàn toàn sai lệch logic hành động chưa diễn ra."
+                    },
+                    {
+                        id: "ex2_q5",
+                        q: "5. Starting next Monday, they _______ (start) cooking healthy meals at home instead of ordering pizza.",
+                        options: ["start", "will start", "started", "starting"],
+                        answer: "will start",
+                        exp: "1. Dịch nghĩa: Bắt đầu kể từ thứ Hai tới, họ sẽ triển khai tự nấu ăn dinh dưỡng tại nhà thay vì đặt bánh pizza bên ngoài.<br>2. Phân tích ngữ pháp: Có cụm chỉ thời gian tương lai bắt đầu <span class='exp-word'>Starting next Monday</span> (Bắt đầu từ thứ Hai tới).<br>3. Chia tương lai đơn chỉ một thói quen mới tốt đẹp sẽ được duy trì: <span class='exp-word'>S + will + V-inf</span> (will start).<br>4. Loại trừ: started chia quá khứ đơn sai ngữ cảnh tương lai tuần sau."
+                    },
+                    {
+                        id: "ex2_q6",
+                        q: "6. Next year, my family _______ (not/watch) TV during dinner time anymore.",
+                        options: ["don't watch", "won't watch", "didn't watch", "isn't watching"],
+                        answer: "won't watch",
+                        exp: "1. Dịch nghĩa: Vào năm sau, gia đình tôi sẽ tuyệt đối không vừa ăn tối vừa xem truyền hình tivi nữa để gắn kết tình thân tốt hơn.<br>2. Phân tích ngữ pháp: Dấu hiệu thời gian năm tới <span class='exp-word'>Next year</span> rõ rệt.<br>3. Sử dụng trợ động từ tương lai phủ định chỉ quyết tâm cam kết xóa bỏ thói quen xấu: <span class='exp-word'>S + won't (will not) + V-inf</span>.<br>4. Loại trừ: don't watch chỉ thói quen hiện tại, didn't watch chia quá khứ đơn giản."
+                    },
+                    {
+                        id: "ex2_q7",
+                        q: "7. From tomorrow, Sarah _______ (drink) more water to improve her skin.",
+                        options: ["drinks", "will drink", "drank", "drinking"],
+                        answer: "will drink",
+                        exp: "1. Dịch nghĩa: Kể từ ngày mai, Sarah sẽ uống nhiều nước sạch hơn mỗi ngày để cải thiện làn da tươi tắn sáng mịn.<br>2. Phân tích ngữ pháp: Mốc thời gian tương lai bắt đầu <span class='exp-word'>From tomorrow</span> (Từ ngày mai).<br>3. Chia động từ tương lai đơn chỉ cam kết thực hiện thói quen tốt: <span class='exp-word'>S + will + V-inf</span> (will drink).<br>4. Loại trừ: drank chia quá khứ đơn hoàn toàn sai thời gian, drinks hiện tại đơn không nhấn mạnh tính cam kết."
+                    },
+                    {
+                        id: "ex2_q8",
+                        q: "8. The students _______ (not/use) their phones after 9 PM starting tonight to sleep better.",
+                        options: ["don't use", "won't use", "didn't use", "aren't using"],
+                        answer: "won't use",
+                        exp: "1. Dịch nghĩa: Các bạn học sinh sẽ không sử dụng điện thoại thông minh sau 9 giờ tối bắt đầu từ đêm nay để cải thiện giấc ngủ sâu ngon giấc hơn.<br>2. Phân tích ngữ pháp: Xuất hiện mốc thời gian cam kết thói quen mới bắt đầu từ tối nay <span class='exp-word'>starting tonight</span>.<br>3. Chia tương lai đơn phủ định chỉ quy tắc cam kết lành mạnh mới: <span class='exp-word'>S + won't (will not) + V-inf</span>.<br>4. Loại trừ: don't use hiện tại đơn giản, didn't use quá khứ đơn giản sai ngữ cảnh."
+                    },
+                    {
+                        id: "ex2_q9",
+                        q: "9. My parents _______ (try) a new vegetarian restaurant this weekend.",
+                        options: ["try", "will try", "tried", "trying"],
+                        answer: "will try",
+                        exp: "1. Dịch nghĩa: Cha mẹ tôi sẽ dùng thử thực đơn của một nhà hàng chay mới mở vào dịp cuối tuần này.<br>2. Phân tích ngữ pháp: Dấu hiệu thời gian cuối tuần này <span class='exp-word'>this weekend</span>.<br>3. Chia tương lai đơn giản chỉ kế hoạch gia đình vui vẻ: <span class='exp-word'>S + will + V-inf</span> (will try).<br>4. Loại trừ: tried quá khứ đơn hoàn toàn sai lệch mốc thời gian cuối tuần tới."
+                    },
+                    {
+                        id: "ex2_q10",
+                        q: "10. I think people _______ (have) healthier lifestyles in the future because of new technology.",
+                        options: ["have", "will have", "had", "having"],
+                        answer: "will have",
+                        exp: "1. Dịch nghĩa: Tôi nghĩ rằng con người sẽ sở hữu lối sống lành mạnh tiến bộ hơn trong tương lai nhờ sự phát triển vượt bậc của công nghệ hiện đại.<br>2. Phân tích ngữ pháp: Xuất hiện cụm thời gian dự báo tương lai xa <span class='exp-word'>in the future</span> đi kèm động từ suy đoán 'I think'.<br>3. Áp dụng thì tương lai đơn giản chỉ một dự đoán xu thế công nghệ: <span class='exp-word'>S + will + V-inf</span> (will have).<br>4. Loại trừ: had chia quá khứ đơn, have hiện tại đơn, having thiếu hệ từ."
+                    }
+                ]
+            },
+            "ex3": {
+                title: "Ex 3: Conditional Type 1 Options (Q1-10)",
+                desc: "Thực hành lựa chọn phân từ động từ tương thích của cấu trúc câu điều kiện loại 1.",
+                questions: [
+                    {
+                        id: "ex3_q1",
+                        q: "1. If you _______ too much junk food, you won't feel healthy.",
+                        options: ["eat", "will eat", "ate", "eating"],
+                        answer: "eat",
+                        exp: "1. Dịch nghĩa: Nếu cậu tiêu thụ quá nhiều thức ăn nhanh có hại cho cơ thể, cậu sẽ không bao giờ cảm nhận được sự khỏe mạnh tràn trề.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If trong câu điều kiện loại 1 của chủ ngữ số nhiều 'you'.<br>3. Áp dụng quy tắc chia hiện tại đơn giản trong mệnh đề điều kiện If: <span class='exp-word'>If + S + V-inf</span> (If you eat).<br>4. Loại trừ: will eat hoàn toàn vi phạm quy tắc cấm dùng tương lai mệnh đề If, ate quá khứ đơn sai điều kiện loại 1."
+                    },
+                    {
+                        id: "ex3_q2",
+                        q: "2. She will lose weight if she _______ to the gym three times a week.",
+                        options: ["go", "goes", "will go", "went"],
+                        answer: "goes",
+                        exp: "1. Dịch nghĩa: Cô ấy chắc chắn sẽ giảm cân hiệu quả nếu cô ấy chịu chăm chỉ đi tập gym ba lần một tuần.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của điều kiện loại 1 với chủ ngữ ngôi thứ ba số ít 'she'.<br>3. Động từ chia hiện tại đơn thêm đuôi -es phù hợp ngôi số ít: <span class='exp-word'>If + she + V-s/es</span> (she goes).<br>4. Loại trừ: go sai ngôi số ít, will go vi phạm quy tắc chia thì tương lai trong mệnh đề If, went quá khứ đơn."
+                    },
+                    {
+                        id: "ex3_q3",
+                        q: "3. If I _______ sleep 8 hours tonight, I will be tired tomorrow.",
+                        options: ["don't", "doesn't", "won't", "didn't"],
+                        answer: "don't",
+                        exp: "1. Dịch nghĩa: Nếu tôi không ngủ đủ 8 tiếng đồng hồ trọn vẹn vào tối nay, tôi chắc chắn sẽ vô cùng mệt mỏi vào ngày mai.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If dạng phủ định của chủ ngữ ngôi thứ nhất số ít 'I'.<br>3. Sử dụng trợ động từ phủ định hiện tại đơn tương thích chủ ngữ 'I': <span class='exp-word'>If + I + don't + V-inf</span>.<br>4. Loại trừ: doesn't sai ngôi, won't sai quy tắc tương lai mệnh đề If, didn't chia quá khứ đơn."
+                    },
+                    {
+                        id: "ex3_q4",
+                        q: "4. You _______ better if you drink more water every day.",
+                        options: ["feel", "will feel", "felt", "feeling"],
+                        answer: "will feel",
+                        exp: "1. Dịch nghĩa: Cơ thể cậu trông sẽ khỏe khoắn khoan khoái hơn rất nhiều nếu cậu chăm chỉ uống nhiều nước sạch hằng ngày.<br>2. Phân tích ngữ pháp: Mệnh đề chính chỉ kết quả tương lai của câu điều kiện loại 1.<br>3. Cấu trúc mệnh đề kết quả điều kiện loại 1: <span class='exp-word'>S + will + V-inf</span> (you will feel).<br>4. Loại trừ: feel hiện tại đơn không nhấn mạnh tính biến đổi kết quả tương lai, felt quá khứ đơn sai ngữ pháp."
+                    },
+                    {
+                        id: "ex3_q5",
+                        q: "5. If he _______ smoking, his health will improve quickly.",
+                        options: ["stop", "stops", "will stop", "stopped"],
+                        answer: "stops",
+                        exp: "1. Dịch nghĩa: Nếu anh ấy quyết tâm từ bỏ cai thuốc lá hoàn toàn, tình trạng sức khỏe của anh ấy sẽ phục hồi cải thiện cực kỳ nhanh chóng.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If trong điều kiện loại 1 với chủ ngữ ngôi thứ ba số ít 'he'.<br>3. Động từ chia hiện tại đơn ngôi số ít thêm đuôi -s: <span class='exp-word'>If + he + V-s/es</span> (he stops).<br>4. Loại trừ: stop sai ngôi, will stop vi phạm quy tắc chia thì tương lai mệnh đề If, stopped chia quá khứ đơn."
+                    },
+                    {
+                        id: "ex3_q6",
+                        q: "6. They won't have energy if they _______ breakfast tomorrow morning.",
+                        options: ["skip", "skips", "will skip", "skipped"],
+                        answer: "skip",
+                        exp: "1. Dịch nghĩa: Họ sẽ không có đủ thể lực năng lượng hoạt động nếu họ bỏ qua bữa ăn sáng vào sáng ngày mai.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của điều kiện loại 1 với chủ ngữ số nhiều 'they'.<br>3. Động từ hiện tại đơn chia dạng nguyên thể không thêm đuôi tương thích chủ ngữ số nhiều: <span class='exp-word'>If + they + V-inf</span> (they skip).<br>4. Loại trừ: skips sai ngôi số ít, will skip vi phạm quy tắc tương lai mệnh đề If, skipped chia quá khứ đơn."
+                    },
+                    {
+                        id: "ex3_q7",
+                        q: "7. If we _______ instead of driving, we will save money and stay fit.",
+                        options: ["will walk", "walk", "walked", "walking"],
+                        answer: "walk",
+                        exp: "1. Dịch nghĩa: Nếu chúng ta chọn đi bộ thư giãn thay vì lái xe ô tô hằng ngày, chúng ta sẽ vừa tiết kiệm được tiền xăng xe vừa giữ được vóc dáng thon gọn khỏe mạnh.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If của điều kiện loại 1 với chủ ngữ số nhiều 'we'.<br>3. Động từ chia hiện tại đơn dạng nguyên thể phù hợp chủ ngữ số nhiều: <span class='exp-word'>If + we + V-inf</span> (we walk).<br>4. Loại trừ: will walk vi phạm quy tắc tương lai mệnh đề If, walked chia quá khứ đơn, walking thiếu hệ từ."
+                    },
+                    {
+                        id: "ex3_q8",
+                        q: "8. Your skin _______ better in a few weeks if you eat more vegetables.",
+                        options: ["looks", "will look", "looked", "looking"],
+                        answer: "will look",
+                        exp: "1. Dịch nghĩa: Làn da của cậu trông sẽ mịn màng rạng rỡ hơn sau vài tuần nữa nếu cậu bổ sung thêm nhiều rau củ xanh vào thực đơn hằng ngày.<br>2. Phân tích ngữ pháp: Mệnh đề chính kết quả tương lai của câu điều kiện loại 1.<br>3. Áp dụng cấu trúc kết quả tương lai đơn giản: <span class='exp-word'>S + will + V-inf</span> (your skin will look).<br>4. Loại trừ: looks hiện tại đơn giản không nhấn mạnh tính kết quả tương lai rõ nét, looked chia quá khứ đơn."
+                    },
+                    {
+                        id: "ex3_q9",
+                        q: "9. If she _______ exercise regularly, she won't lose weight.",
+                        options: ["doesn't", "don't", "won't", "didn't"],
+                        answer: "doesn't",
+                        exp: "1. Dịch nghĩa: Nếu cô ấy không duy trì thói quen tập luyện thể dục thể thao đều đặn hằng ngày, cô ấy sẽ không thể giảm cân thành công.<br>2. Phân tích ngữ pháp: Mệnh đề điều kiện If phủ định của điều kiện loại 1 với chủ ngữ ngôi thứ ba số ít 'she'.<br>3. Sử dụng trợ động từ phủ định hiện tại đơn tương thích ngôi số ít: <span class='exp-word'>If + she + doesn't + V-inf</span>.<br>4. Loại trừ: don't sai ngôi số ít, won't sai quy tắc tương lai mệnh đề If, didn't chia quá khứ đơn."
+                    },
+                    {
+                        id: "ex3_q10",
+                        q: "10. I _______ a yoga class if my friend comes with me.",
+                        options: ["will join", "join", "joined", "joining"],
+                        answer: "will join",
+                        exp: "1. Dịch nghĩa: Tớ chắc chắn sẽ đăng ký tham gia lớp học yoga rèn luyện sức khỏe nếu người bạn thân nhất của tớ cũng đi cùng tớ.<br>2. Phân tích ngữ pháp: Mệnh đề chính kết quả tương lai của câu điều kiện loại 1 có điều kiện 'if my friend comes'.<br>3. Áp dụng cấu trúc kết quả tương lai đơn giản: <span class='exp-word'>S + will + V-inf</span> (I will join).<br>4. Loại trừ: join hiện tại đơn thuần không chỉ kết quả biến đổi tương lai, joined quá khứ đơn, joining thiếu hệ từ."
+                    }
+                ]
+            },
+            "ex4_5": {
+                title: "Ex 4 & 5: Synonyms & Antonyms (Q1-10)",
+                desc: "Thực hành lựa chọn từ đồng nghĩa (Closest) và trái nghĩa (Opposite) trong ngữ cảnh lối sống và sức khỏe.",
+                questions: [
+                    {
+                        id: "ex4_q1",
+                        q: "1. Find CLOSEST: My sister is very <u>independent</u>. She lives alone in the city and doesn't need help.",
+                        options: ["self-reliant", "friendly", "careful", "beautiful"],
+                        answer: "self-reliant",
+                        exp: "1. Dịch nghĩa: Chị gái tôi là một người vô cùng tự lập tự chủ. Chị ấy sống một mình tự lo liệu công việc trên thành phố lớn và không cần sự giúp đỡ hỗ trợ tài chính từ gia đình.<br>2. Phân tích từ đồng nghĩa:<br>• <span class='exp-word'>independent</span> (adj): tự lập, độc lập tự chủ.<br>• <span class='exp-word'>self-reliant</span> (adj): tự lực cánh sinh, tự chủ không dựa dẫm.<br>• <span class='exp-word'>friendly</span> (adj): thân thiện hòa đồng.<br>• <span class='exp-word'>careful</span> (adj): cẩn thận tỉ mỉ.<br>• <span class='exp-word'>beautiful</span> (adj): xinh đẹp kiều diễm.<br>3. Tại sao chọn: 'self-reliant' là từ đồng nghĩa hoàn hảo lột tả đúng tính cách tự lực cánh sinh vượt khó của người tự lập.<br>4. Loại trừ: Các từ thân thiện, cẩn thận hay xinh đẹp không lột tả được khía cạnh tính cách tự lập này."
+                    },
+                    {
+                        id: "ex4_q2",
+                        q: "2. Find CLOSEST: Social media has a big <u>impact</u> on young people's lifestyle.",
+                        options: ["picture", "influence", "distance", "memory"],
+                        answer: "influence",
+                        exp: "1. Dịch nghĩa: Mạng xã hội trực tuyến đang mang lại tác động, sức ảnh hưởng vô cùng to lớn đến phong cách lối sống hằng ngày của thế hệ trẻ.<br>2. Phân tích từ đồng nghĩa:<br>• <span class='exp-word'>impact</span> (n): tác động, sức ảnh hưởng sâu rộng.<br>• <span class='exp-word'>picture</span> (n): bức tranh nghệ thuật.<br>• <span class='exp-word'>influence</span> (n): sức ảnh hưởng, tác động thay đổi hành vi.<br>• <span class='exp-word'>distance</span> (n): khoảng cách địa lý ngăn trở.<br>• <span class='exp-word'>memory</span> (n): ký ức kỷ niệm xưa cũ.<br>3. Tại sao chọn: 'influence' là từ đồng nghĩa chính xác nhất của tác động xã hội sâu rộng.<br>4. Loại trừ: Tranh vẽ, khoảng cách hay kỷ niệm không thể thay thế cho từ chỉ tác động ảnh hưởng sâu sắc."
+                    },
+                    {
+                        id: "ex4_q3",
+                        q: "3. Find CLOSEST: In the countryside, people often <u>interact</u> with their neighbors.",
+                        options: ["argue", "compete", "communicate", "ignore"],
+                        answer: "communicate",
+                        exp: "1. Dịch nghĩa: Ở vùng nông thôn thanh bình, người dân bản địa thường xuyên tương tác, trò chuyện cởi mở gắn kết cùng chòm xóm láng giềng xung quanh.<br>2. Phân tích từ đồng nghĩa:<br>• <span class='exp-word'>interact</span> (v): tương tác, liên hệ giao tiếp gắn bó.<br>• <span class='exp-word'>argue</span> (v): tranh chấp cãi cọ nảy lửa.<br>• <span class='exp-word'>compete</span> (v): ganh đua cạnh tranh khốc liệt.<br>• <span class='exp-word'>communicate</span> (v): giao tiếp, trò chuyện chia sẻ thông tin thân tình.<br>• <span class='exp-word'>ignore</span> (v): lờ đi không quan tâm đến.<br>3. Tại sao chọn: Giao tiếp chia sẻ trò chuyện 'communicate' là khía cạnh cốt lõi của hành động tương tác xã hội thân mật ở làng quê.<br>4. Loại trừ: Cãi vã, tranh đua hay ngó lơ phản ánh hành vi tiêu cực không đồng nghĩa với tương tác láng giềng tích cực."
+                    },
+                    {
+                        id: "ex4_q4",
+                        q: "4. Find CLOSEST: Traditional dances really <u>fascinate</u> foreign tourists.",
+                        options: ["bore", "attract", "confuse", "frighten"],
+                        answer: "attract",
+                        exp: "1. Dịch nghĩa: Những điệu múa cổ truyền rực rỡ sắc màu thực sự cuốn hút, làm mê hoặc mãnh liệt tâm trí những du khách nước ngoài tham quan.<br>2. Phân tích từ đồng nghĩa:<br>• <span class='exp-word'>fascinate</span> (v): mê hoặc, lôi cuốn cực kỳ mạnh mẽ.<br>• <span class='exp-word'>bore</span> (v): gây tẻ nhạt chán nản.<br>• <span class='exp-word'>attract</span> (v): lôi cuốn, thu hút sự chú ý trân trọng.<br>• <span class='exp-word'>confuse</span> (v): gây hoang mang bối rối hoài nghi.<br>• <span class='exp-word'>frighten</span> (v): dọa nạt dọa sợ hãi.<br>3. Tại sao chọn: Động từ lôi cuốn 'attract' phản ánh đúng mức độ cuốn hút hấp dẫn nghệ thuật của các điệu múa cổ truyền đặc sắc.<br>4. Loại trừ: Làm chán nản, gây bối rối hoang mang hay dọa dẫm không liên quan tới giá trị cuốn hút du lịch văn hóa tốt đẹp."
+                    },
+                    {
+                        id: "ex4_q5",
+                        q: "5. Find CLOSEST: It's hard to <u>concentrate</u> on work when you have a noisy lifestyle.",
+                        options: ["focus", "relax", "sleep", "forget"],
+                        answer: "focus",
+                        exp: "1. Dịch nghĩa: Thật là vô cùng khó khăn để tập trung tư duy hoàn thành công việc hiệu quả khi bạn phải sống trong một môi trường ồn ào phức tạp.<br>2. Phân tích từ đồng nghĩa:<br>• <span class='exp-word'>concentrate</span> (v): tập trung trí lực cao độ.<br>• <span class='exp-word'>focus</span> (v): tập trung cao độ chú ý vào mục tiêu chính.<br>• <span class='exp-word'>relax</span> (v): nghỉ ngơi thư giãn thảnh thơi.<br>• <span class='exp-word'>sleep</span> (v): ngủ nghỉ lấy lại sức lực.<br>• <span class='exp-word'>forget</span> (v): quên lãng tri thức.<br>3. Tại sao chọn: Cụm động từ tập trung tư duy học hỏi 'focus on' hoàn toàn đồng nghĩa đồng dạng ngữ pháp với 'concentrate on'.<br>4. Loại trừ: Thư giãn nghỉ ngơi, đi ngủ hay quên lãng không giúp giải quyết bài toán cần sự tập trung trí não làm việc."
+                    },
+                    {
+                        id: "ex5_q1",
+                        q: "6. Find OPPOSITE: Many young people <u>avoid</u> eating vegetables.",
+                        options: ["choose", "dislike", "forget", "refuse"],
+                        answer: "choose",
+                        exp: "1. Dịch nghĩa: Nhiều bạn trẻ ngày nay thường né tránh việc ăn rau quả xanh trong bữa cơm hằng ngày.<br>2. Phân tích từ trái nghĩa:<br>• <span class='exp-word'>avoid</span> (v): né tránh, xa lánh hành vi nào đó.<br>• <span class='exp-word'>choose</span> (v): chọn lựa, hân hoan đón nhận trực tiếp.<br>• <span class='exp-word'>dislike</span> (v): không ưa thích, ghen ghét ghét bỏ.<br>• <span class='exp-word'>forget</span> (v): quên lãng lơ đãng.<br>• <span class='exp-word'>refuse</span> (v): cự tuyệt từ chối quyết liệt.<br>3. Tại sao chọn: Trái ngược hoàn toàn với hành vi né tránh xa lánh 'avoid' chính là việc chủ động đón nhận, chọn lựa sử dụng 'choose'.<br>4. Loại trừ: Ghét bỏ, từ chối hay lơ đãng là các từ đồng nghĩa hoặc gần nghĩa với hành động né tránh, không thể dùng làm từ trái nghĩa."
+                    },
+                    {
+                        id: "ex5_q2",
+                        q: "7. Find OPPOSITE: After staying up late every night, Tom feels very <u>weak</u>.",
+                        options: ["tired", "strong", "sick", "lazy"],
+                        answer: "strong",
+                        exp: "1. Dịch nghĩa: Sau chuỗi ngày dài liên tục thức khuya cày game lướt mạng mỗi đêm, cơ thể Tom cảm thấy vô cùng yếu ớt, suy kiệt sức lực.<br>2. Phân tích từ trái nghĩa:<br>• <span class='exp-word'>weak</span> (adj): yếu ớt, mệt mỏi rã rời thể xác.<br>• <span class='exp-word'>tired</span> (adj): mệt mỏi oải oải thiếu ngủ.<br>• <span class='exp-word'>strong</span> (adj): khỏe mạnh, tráng kiện tràn trề sinh lực thể chất.<br>• <span class='exp-word'>sick</span> (adj): ốm đau bệnh tật yếu đau.<br>• <span class='exp-word'>lazy</span> (adj): lười nhác trốn tránh làm việc.<br>3. Tại sao chọn: Trái ngược 180 độ với thể trạng suy kiệt yếu ớt 'weak' chính là một cơ thể cường tráng dồi dào sinh lực 'strong'.<br>4. Loại trừ: Mệt mỏi, ốm yếu hay lười nhác là các từ gần nghĩa hoặc đồng phạm trù mệt mỏi, không dùng làm từ trái nghĩa."
+                    },
+                    {
+                        id: "ex5_q3",
+                        q: "8. Find OPPOSITE: Teenagers want more <u>freedom</u> in their lifestyle.",
+                        options: ["control", "money", "happiness", "friendship"],
+                        answer: "control",
+                        exp: "1. Dịch nghĩa: Những bạn thanh thiếu niên luôn khao khát có thêm nhiều sự tự do để tự quyết định phong cách lối sống riêng cá nhân hằng ngày.<br>2. Phân tích từ trái nghĩa:<br>• <span class='exp-word'>freedom</span> (n): sự tự do tự chủ quyết định.<br>• <span class='exp-word'>control</span> (n): sự kiểm soát, kìm kẹp quản lý chặt chẽ của bề trên.<br>• <span class='exp-word'>money</span> (n): tiền tài của cải vật chất.<br>• <span class='exp-word'>happiness</span> (n): niềm vui sướng hạnh phúc.<br>• <span class='exp-word'>friendship</span> (n): tình bạn bè bằng hữu hữu nghị.<br>3. Tại sao chọn: Trái ngược hoàn toàn với quyền tự do tự chủ định hướng cuộc sống 'freedom' là sự kìm kẹp, kiểm soát chặt chẽ 'control' từ gia đình nhà trường.<br>4. Loại trừ: Tiền bạc, hạnh phúc hay tình bạn thân thiết không đại diện cho phạm trù quản thúc trái ngược với tự do."
+                    },
+                    {
+                        id: "ex5_q4",
+                        q: "9. Find OPPOSITE: I <u>normally</u> wake up at 6 a.m. every day, but on weekends I like to sleep until 10 a.m.",
+                        options: ["always", "rarely", "often", "quickly"],
+                        answer: "rarely",
+                        exp: "1. Dịch nghĩa: Thông thường hằng ngày tôi luôn thức giấc vào lúc 6 giờ sáng để chuẩn bị ngày mới năng động.<br>2. Phân tích từ trái nghĩa:<br>• <span class='exp-word'>normally</span> (adv): một cách thông thường, đều đặn thường xuyên hằng ngày hằng giờ.<br>• <span class='exp-word'>always</span> (adv): luôn luôn 100% tần suất.<br>• <span class='exp-word'>rarely</span> (adv): hiếm khi thực hiện, tần suất cực kỳ ít rải rác.<br>• <span class='exp-word'>often</span> (adv): thường xuyên diễn ra định kỳ.<br>• <span class='exp-word'>quickly</span> (adv): một cách nhanh chóng khẩn trương tốc độ.<br>3. Tại sao chọn: Trái ngược trực tiếp với thói quen sinh hoạt thường ngày đều đặn thường xuyên 'normally' chính là hành vi hiếm khi xảy ra 'rarely'.<br>4. Loại trừ: Luôn luôn hay thường xuyên là từ gần nghĩa đồng sắc thái tần suất cao, nhanh chóng chỉ tốc độ hành động không liên quan tần suất lặp lại."
+                    },
+                    {
+                        id: "ex5_q5",
+                        q: "10. Find OPPOSITE: Time with family is very <u>precious</u> to me. I think it's more important than money.",
+                        options: ["worthless", "expensive", "beautiful", "special"],
+                        answer: "worthless",
+                        exp: "1. Dịch nghĩa: Khoảng thời gian sum họp đầm ấm bên gia đình thân yêu là vô cùng quý giá, vô giá đối với tâm hồn tôi.<br>2. Phân tích từ trái nghĩa:<br>• <span class='exp-word'>precious</span> (adj): quý báu, đắt giá, vô cùng quan trọng.<br>• <span class='exp-word'>worthless</span> (adj): vô giá trị, tầm thường không đáng một xu, không quan trọng.<br>• <span class='exp-word'>expensive</span> (adj): đắt đỏ tốn nhiều tiền của sắm sửa.<br>• <span class='exp-word'>beautiful</span> (adj): xinh đẹp kiều diễm cuốn hút.<br>• <span class='exp-word'>special</span> (adj): đặc biệt độc đáo khác lạ.<br>3. Tại sao chọn: Trái ngược với giá trị cao quý thiêng liêng 'precious' chính là thứ tầm thường vô giá trị không đáng một xu 'worthless'.<br>4. Loại trừ: Đắt đỏ về mặt tiền của vật chất không đại diện đúng trái nghĩa của giá trị tinh thần thiêng liêng vô giá."
+                    }
+                ]
+            },
+            "ex6": {
+                title: "Ex 6: Word Form Options (Q1-10)",
+                desc: "Thực hành lựa chọn biến thể từ loại danh/động/tính/trạng từ chuẩn xác cấu trúc ngữ pháp tiếng Anh.",
+                questions: [
+                    {
+                        id: "ex6_q1",
+                        q: "1. My grandmother has a simple _______ (LIFE) in the countryside. She grows her own vegetables.",
+                        options: ["lifestyle", "lively", "live", "lives"],
+                        answer: "lifestyle",
+                        exp: "1. Dịch nghĩa: Bà ngoại tôi duy trì một lối sống vô cùng mộc mạc, bình dị ở làng quê nông thôn dã ngoại. Bà tự trồng vườn rau quả xanh tự phục vụ bữa ăn.<br>2. Phân tích ngữ pháp: Sau mạo từ 'a' và tính từ 'simple' cần một danh từ đóng vai trò làm tân ngữ chính: <span class='exp-word'>a simple + Noun</span>.<br>3. Danh từ ghép chỉ phong cách, lối sống sinh hoạt lành mạnh của bà là: <span class='exp-word'>lifestyle</span>.<br>4. Loại trừ: lively là tính từ hoạt bát, live là động từ trực tiếp, lives là dạng chia ngôi số ít hoặc số nhiều danh từ cuộc sống không chỉ phong cách."
+                    },
+                    {
+                        id: "ex6_q2",
+                        q: "2. The party was very _______ (LIVE) with music and dancing all night. Everyone had a great time.",
+                        options: ["live", "lively", "life", "lives"],
+                        answer: "lively",
+                        exp: "1. Dịch nghĩa: Bữa tiệc tối hôm qua đã diễn ra vô cùng sôi động, náo nhiệt với những bản nhạc hay và các điệu nhảy thâu đêm.<br>2. Phân tích ngữ pháp: Sau trạng từ chỉ mức độ 'very' và hệ từ liên kết 'was' cần một tính từ bổ trợ mô tả tính chất của bữa tiệc: <span class='exp-word'>be + very + Adjective</span>.<br>3. Tính từ mô tả sự sôi nổi, tràn đầy sức sống và náo nhiệt là: <span class='exp-word'>lively</span>.<br>4. Loại trừ: live là động từ/tính từ trực tiếp, life là danh từ cuộc đời, lives là số nhiều danh từ không dùng mô tả không khí bữa tiệc."
+                    },
+                    {
+                        id: "ex6_q3",
+                        q: "3. Social media can _______ (IMPACT) the way teenagers spend their free time.",
+                        options: ["impact", "impactful", "impacts", "impacted"],
+                        answer: "impact",
+                        exp: "1. Dịch nghĩa: Các nền tảng mạng xã hội có thể gây ảnh hưởng, tác động mạnh mẽ đến cách thức tuổi thiếu niên phân bổ thời gian rảnh rỗi hằng ngày.<br>2. Phân tích ngữ pháp: Sau động từ khuyết thiếu 'can' cần một động từ nguyên mẫu không chia bổ nghĩa trực tiếp hành động: <span class='exp-word'>modal verb (can) + V-inf</span>.<br>3. Động từ nguyên mẫu giữ nguyên của từ tác động là: <span class='exp-word'>impact</span>.<br>4. Loại trừ: impactful là tính từ, impacts dạng chia số ít, impacted dạng chia quá khứ hoàn toàn vi phạm cấu trúc sau động từ khuyết thiếu."
+                    },
+                    {
+                        id: "ex6_q4",
+                        q: "4. Reading books is an _______ (EDUCATE) activity that helps children learn new things.",
+                        options: ["education", "educational", "educate", "educator"],
+                        answer: "educational",
+                        exp: "1. Dịch nghĩa: Thói quen đọc sách hằng ngày là một hoạt động mang tính giáo dục bổ ích giúp con trẻ tiếp cận nhiều tri thức quý báu mới mẻ.<br>2. Phân tích ngữ pháp: Đứng trước danh từ 'activity' cần một tính từ bổ nghĩa cho bản chất đặc tính của danh từ đó: <span class='exp-word'>an + Adjective + Noun</span>.<br>3. Tính từ chỉ bản chất mang tính giáo dục, đem lại kiến thức bổ ích hữu dụng: <span class='exp-word'>educational</span>.<br>4. Loại trừ: education là danh từ ngành giáo dục, educate động từ dạy dỗ giảng dạy, educator danh từ nhà giáo dục sư phạm."
+                    },
+                    {
+                        id: "ex6_q5",
+                        q: "5. Online games are more _______ (INTERACT) than watching TV because you can play with friends.",
+                        options: ["interactive", "interaction", "interact", "interactively"],
+                        answer: "interactive",
+                        exp: "1. Dịch nghĩa: Các trò chơi trực tuyến ngày nay mang tính tương tác cao hơn nhiều so với việc chỉ ngồi xem tivi thụ động vì bạn có thể chơi cùng bạn bè.<br>2. Phân tích ngữ pháp: Sau trạng từ so sánh hơn 'more' và hệ từ liên kết 'are' cần một tính từ để so sánh đặc tính giữa hai hoạt động: <span class='exp-word'>be + more + Adjective + than</span>.<br>3. Tính từ chỉ tính chất tương tác qua lại, kết nối chủ động: <span class='exp-word'>interactive</span>.<br>4. Loại trừ: interaction danh từ sự tương tác, interact động từ tương tác, interactively trạng từ phương thức."
+                    },
+                    {
+                        id: "ex6_q6",
+                        q: "6. My sister is the main _______ (ORGANISE) of our family parties. She plans everything perfectly.",
+                        options: ["organise", "organiser", "organisation", "organised"],
+                        answer: "organiser",
+                        exp: "1. Dịch nghĩa: Chị gái tôi chính là nhà tổ chức chính, người điều phối tất cả các bữa tiệc sum họp của gia đình. Chị ấy lên kế hoạch chu đáo tuyệt vời.<br>2. Phân tích ngữ pháp: Đứng sau mạo từ chỉ định 'the' và tính từ bổ trợ 'main' cần một danh từ chỉ người thực hiện hành động tổ chức: <span class='exp-word'>the main + Noun (chỉ người)</span>.<br>3. Danh từ chỉ người tổ chức, ban tổ chức sự kiện chuyên nghiệp: <span class='exp-word'>organiser</span>.<br>4. Loại trừ: organise động từ lập kế hoạch tổ chức, organisation danh từ tổ chức/cơ quan, organised tính từ có đầu óc sắp xếp ngăn nắp."
+                    },
+                    {
+                        id: "ex6_q7",
+                        q: "7. Many health problems are _______ (AVOID) if you eat well and exercise regularly.",
+                        options: ["avoid", "avoidance", "avoidable", "avoided"],
+                        answer: "avoidable",
+                        exp: "1. Dịch nghĩa: Phần lớn các rắc rối bệnh tật về sức khỏe đều có thể phòng tránh được nếu chúng ta duy trì ăn uống khoa học và tập thể thao đều đặn.<br>2. Phân tích ngữ pháp: Sau hệ từ liên kết chỉ trạng thái 'are' cần một tính từ mô tả khả năng hành vi đối với các rắc rối sức khỏe: <span class='exp-word'>be + Adjective</span>.<br>3. Tính từ chỉ tính chất có thể né tránh được, có khả năng phòng ngừa ngăn chặn: <span class='exp-word'>avoidable</span>.<br>4. Loại trừ: avoid động từ tránh xa, avoidance danh từ sự né tránh phòng vệ, avoided dạng bị động quá khứ không chỉ khả năng tính chất."
+                    },
+                    {
+                        id: "ex6_q8",
+                        q: "8. In Japan, people _______ (GREET) each other by bowing instead of shaking hands.",
+                        options: ["greet", "greeting", "greets", "greeted"],
+                        answer: "greet",
+                        exp: "1. Dịch nghĩa: Ở đất nước mặt trời mọc Nhật Bản, mọi người chào hỏi nhau bằng nghi thức cúi đầu lịch thiệp thay vì bắt tay.<br>2. Phân tích ngữ pháp: Đứng sau trạng ngữ vị trí 'In Japan' và chủ ngữ số nhiều 'people' cần một động từ chính hành động chia ở thì hiện tại đơn giản chỉ quy luật thói quen xã hội: <span class='exp-word'>Subject (people) + Verb-inf</span>.<br>3. Động từ chào hỏi nguyên mẫu không chia dành cho chủ ngữ tập thể số nhiều là: <span class='exp-word'>greet</span>.<br>4. Loại trừ: greets sai ngôi số ít, greeted chia quá khứ không đúng quy luật hiện tại, greeting thiếu hệ từ liên kết."
+                    },
+                    {
+                        id: "ex6_q9",
+                        q: "9. I need complete _______ (CONCENTRATE) when I study for exams, so I turn off my phone.",
+                        options: ["concentrate", "concentration", "concentrated", "concentrating"],
+                        answer: "concentration",
+                        exp: "1. Dịch nghĩa: Tôi thực sự cần một sự tập trung cao độ, hoàn toàn yên tĩnh khi bước vào giai đoạn ôn thi, vì thế tôi luôn tắt điện thoại di động.<br>2. Phân tích ngữ pháp: Đứng sau động từ hành động chỉ nhu cầu sở hữu 'need' và tính từ mô tả mức độ 'complete' cần một danh từ làm tân ngữ trực tiếp: <span class='exp-word'>need + Adjective + Noun</span>.<br>3. Danh từ chỉ sự tập trung tư duy cao độ tinh thần: <span class='exp-word'>concentration</span>.<br>4. Loại trừ: concentrate động từ hành động tập trung, concentrated tính từ mang tính đậm đặc cô đọng, concentrating danh động từ dạng tiếp diễn."
+                    },
+                    {
+                        id: "ex6_q10",
+                        q: "10. Young adults want to live _______ (INDEPENDENT) without asking their parents for money.",
+                        options: ["independent", "independently", "independence", "depend"],
+                        answer: "independently",
+                        exp: "1. Dịch nghĩa: Các bạn trẻ ngày nay luôn mong muốn được sinh sống một cách tự lập, tự chủ cuộc đời mà không cần xin hỗ trợ tài chính từ cha mẹ.<br>2. Phân tích ngữ pháp: Đứng sau động từ chỉ hoạt động sinh sống 'live' cần một trạng từ chỉ phương thức bổ trợ làm rõ cách thức thực hiện cuộc sống sinh hoạt hằng ngày: <span class='exp-word'>Verb (live) + Adverb</span>.<br>3. Trạng từ phương thức chỉ cách sinh sống độc lập, tự lực tự cường: <span class='exp-word'>independently</span>.<br>4. Loại trừ: independent tính từ bổ nghĩa danh từ, independence danh từ nền độc lập tự do, depend động từ lệ thuộc nương tựa."
+                    }
+                ]
+            }
+        };
+
+        let score = 0;
+        let answeredList = {}; // Tracking {questionId: {chosen: string, correct: boolean}}
+        let currentActiveTab = "ex1_p1";
+
+        // Tab Switching & Setup System
+        function setupTabs() {
+            const container = document.getElementById("tabs-container");
+            container.innerHTML = "";
+            let idx = 1;
+
+            for (const key in database) {
+                const item = database[key];
+                const btn = document.createElement("button");
+                btn.id = `tab-btn-${key}`;
+                btn.className = `py-2.5 px-3 rounded-2xl text-xs md:text-sm font-black tab-btn border-b-4 border-black/10 active:translate-y-0.5 shadow-sm transition-all flex items-center justify-center gap-1`;
+                btn.innerHTML = `<i class="fa-solid fa-star text-yellow-300"></i> P.${idx}: ${item.title.split(":")[0]}`;
+                btn.onclick = () => switchTab(key);
+                container.appendChild(btn);
+                idx++;
+            }
+            switchTab(currentActiveTab);
+        }
+
+        function switchTab(key) {
+            currentActiveTab = key;
+            document.querySelectorAll("#tabs-container button").forEach(btn => btn.classList.remove("active"));
+            const target = document.getElementById(`tab-btn-${key}`);
+            if (target) target.classList.add("active");
+
+            renderWorkspace(key);
+            playSound('correct');
+        }
+
+        // Main rendering machine
+        function renderWorkspace(key) {
+            const workspace = document.getElementById("exercise-workspace");
+            const data = database[key];
+
+            let html = `
+                <div class="mb-6 border-b-2 border-dashed border-white/20 pb-4">
+                    <h2 class="text-xl md:text-2xl font-black text-white flex items-center gap-2">
+                        <span class="bg-emerald-600 text-white py-1 px-3 rounded-xl text-xs uppercase tracking-wide font-extrabold shadow-sm">Đang mở</span>
+                        ${data.title}
+                    </h2>
+                    <p class="text-xs md:text-sm font-bold text-teal-950 mt-1"><i class="fa-solid fa-circle-info"></i> ${data.desc}</p>
+                </div>
+                <div class="space-y-6">
+            `;
+
+            data.questions.forEach((q, idx) => {
+                const answerStatus = answeredList[q.id];
+                let cardClass = "bg-white/95 rounded-3xl p-5 md:p-6 shadow-md border-b-4 border-black/10 transition-all duration-300 relative";
+                
+                if (answerStatus) {
+                    cardClass = answerStatus.correct 
+                        ? "bg-green-50 border-4 border-[#00D26A] rounded-3xl p-5 md:p-6 shadow-md relative"
+                        : "bg-red-50 border-4 border-[#FF4757] rounded-3xl p-5 md:p-6 shadow-md relative shake";
+                }
+
+                html += `
+                    <div class="${cardClass}" id="question-card-${q.id}">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="bg-teal-700 text-white font-extrabold px-3 py-1 rounded-xl text-xs uppercase shadow-sm">CÂU ${idx + 1}</span>
+                            ${answerStatus ? (answerStatus.correct ? '<span class="text-[#00D26A] font-black text-sm"><i class="fa-solid fa-face-laugh-beam"></i> CHÍNH XÁC!</span>' : '<span class="text-[#FF4757] font-black text-sm"><i class="fa-solid fa-face-sad-tear"></i> CHƯA ĐÚNG!</span>') : ''}
+                        </div>
+                `;
+
+                // Render the question content
+                html += `<div class="text-base md:text-lg font-black text-slate-800 leading-relaxed mb-4">${q.q}</div>`;
+                html += `<div class="grid grid-cols-1 md:grid-cols-2 gap-3">`;
+
+                q.options.forEach((opt, oIdx) => {
+                    let btnClass = "btn-answer font-extrabold p-3.5 rounded-2xl text-left border-b-4 flex items-center gap-2 text-sm md:text-base";
+                    let btnIcon = `<i class="fa-regular fa-circle text-teal-300"></i>`;
+                    let isDisabled = answerStatus ? 'disabled' : '';
+
+                    if (answerStatus) {
+                        if (opt === q.answer) {
+                            btnClass = "bg-[#00D26A] text-white font-extrabold p-3.5 rounded-2xl text-left border-b-4 border-[#009624] flex items-center gap-2 text-sm md:text-base";
+                            btnIcon = `<i class="fa-solid fa-circle-check text-white animate-bounce"></i>`;
+                        } else if (answerStatus.chosen === opt) {
+                            btnClass = "bg-[#FF4757] text-white font-extrabold p-3.5 rounded-2xl text-left border-b-4 border-[#C2185B] flex items-center gap-2 text-sm md:text-base";
+                            btnIcon = `<i class="fa-solid fa-circle-xmark text-white"></i>`;
+                        } else {
+                            btnClass = "bg-gray-100 border-2 border-gray-200 text-gray-400 font-bold p-3.5 rounded-2xl text-left flex items-center gap-2 opacity-60 text-sm md:text-base";
+                        }
+                    }
+
+                    html += `
+                        <button ${isDisabled} onclick="verifyOption('${q.id}', '${opt}', '${q.answer}')" class="${btnClass}">
+                            ${btnIcon} <span class="font-black text-xs md:text-sm bg-black/10 py-0.5 px-2 rounded-lg mr-1">${String.fromCharCode(65 + oIdx)}</span> <span>${opt}</span>
+                        </button>
+                    `;
+                });
+
+                html += `</div>`;
+
+                // Dynamic explanation box renders if already answered
+                if (answerStatus) {
+                    html += `
+                        <div class="explanation-box mt-5">
+                            <div class="banner-instruction m-4 p-3 font-black text-xs md:text-sm text-center">
+                                Thạc sỹ Ms Lê Hằng English giải thích siêu chi tiết:
+                            </div>
+                            <div class="exp-content px-5 pb-5 text-slate-700">
+                                <p class="font-bold leading-relaxed text-sm md:text-base">
+                                    ${q.exp}
+                                </p>
+                            </div>
+                        </div>
+                    `;
+                }
+
+                html += `</div>`;
+            });
+
+            html += `</div>`;
+            workspace.innerHTML = html;
+        }
+
+        // Answer verification engine
+        function verifyOption(qId, selectedOpt, correctAns) {
+            if (answeredList[qId]) return;
+
+            const isCorrect = selectedOpt === correctAns;
+            answeredList[qId] = {
+                correct: isCorrect,
+                chosen: selectedOpt
+            };
+
+            if (isCorrect) {
+                score += 10;
+                playSound('correct');
+                spawnConfetti();
+            } else {
+                playSound('wrong');
+                const card = document.getElementById(`question-card-${qId}`);
+                if (card) {
+                    card.classList.add("shake");
+                    setTimeout(() => card.classList.remove("shake"), 400);
+                }
+            }
+
+            refreshScoreTracker();
+            renderWorkspace(currentActiveTab);
+        }
+
+        function refreshScoreTracker() {
+            let totalQ = 0;
+            for (const key in database) {
+                totalQ += database[key].questions.length;
+            }
+            const completedCount = Object.keys(answeredList).length;
+            const percentage = totalQ > 0 ? (completedCount / totalQ) * 100 : 0;
+
+            document.getElementById("footer-progress-bar").style.width = `${percentage}%`;
+            document.getElementById("footer-score-text").innerText = score;
+        }
+
+        // Final submit summary evaluation
+        function submitFinal() {
+            let totalQ = 0;
+            for (const key in database) {
+                totalQ += database[key].questions.length;
+            }
+            const completedCount = Object.keys(answeredList).length;
+
+            if (completedCount === 0) {
+                playSound('wrong');
+                showResultModal("Con chưa hoàn thành câu hỏi nào cả. Hãy chọn thử sức mình trước khi cô tổng kết điểm số nhé!", 0, 0, totalQ);
+                return;
+            }
+
+            let correctCount = 0;
+            for (const key in answeredList) {
+                if (answeredList[key].correct) correctCount++;
+            }
+
+            const finalPercent = Math.round((correctCount / totalQ) * 100);
+            let appraisal = "";
+
+            if (finalPercent < 50) {
+                appraisal = "Điểm lần này chưa cao lắm, con cố gắng đọc kĩ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!";
+                playSound('wrong');
+            } else if (finalPercent >= 50 && finalPercent <= 80) {
+                appraisal = "Con đã có tiến bộ khá ổn rồi, con cố gắng đọc kĩ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!";
+                playSound('correct');
+                spawnConfetti();
+            } else {
+                appraisal = "Làm tốt lắm, con cố gắng ring điểm 10 ở lần sau nha!";
+                playSound('correct');
+                spawnConfetti();
+                setTimeout(spawnConfetti, 1000);
+            }
+
+            showResultModal(appraisal, finalPercent, correctCount, totalQ);
+        }
+
+        function showResultModal(appraisalText, pct, correct, total) {
+            document.getElementById("modal-score-percent").innerText = `${pct}%`;
+            document.getElementById("modal-score-fraction").innerText = `(${correct}/${total} câu trả lời chính xác)`;
+            document.getElementById("modal-comment").innerText = appraisalText;
+            document.getElementById("result-modal").classList.remove("hidden");
+        }
+
+        function closeResultModal() {
+            document.getElementById("result-modal").classList.add("hidden");
+        }
+
+        function restartTest() {
+            answeredList = {};
+            score = 0;
+            currentActiveTab = "ex1_p1";
+            refreshScoreTracker();
+            setupTabs();
+            closeResultModal();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.onload = function() {
+            setupTabs();
+            refreshScoreTracker();
+        }
+    </script>
+</body>
+</html>
+``` eof
+
+Tôi đã tích hợp toàn bộ các câu hỏi trắc nghiệm một cách toàn vẹn nhất, lập trình sẵn từng lời giải thích tiếng Việt/phiên âm học thuật đẹp mắt của riêng bạn. Học sinh của bạn giờ đây có thể làm bài và thấu hiểu tri thức ngay lập tức!
